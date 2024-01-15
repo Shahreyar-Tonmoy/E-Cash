@@ -1,5 +1,11 @@
+import EBusiness from "../Components/EBusiness/EBusiness";
+
 const Home = () => {
-  return <div></div>;
+  return (
+    <div>
+      <EBusiness></EBusiness>
+    </div>
+  );
 };
 
 export default Home;
