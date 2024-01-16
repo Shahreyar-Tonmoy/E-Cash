@@ -34,7 +34,7 @@ const Header = () => {
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
-          <label htmlFor="my-drawer" className="btn btn-ghost hover:bg-transparent cursor-pointer">
+          <label htmlFor="my-drawer" className="btn btn-ghost hover:bg-transparent text-white cursor-pointer">
             <RiMenu3Line className="text-xl"></RiMenu3Line>
           </label>
         </div>
@@ -50,6 +50,9 @@ const Header = () => {
           <a className="btn hover:bg-transparent btn-ghost text-xl">E-Cash</a>
             
 
+
+
+            
           </div>
             {/* Sidebar content here */}
             <li>
