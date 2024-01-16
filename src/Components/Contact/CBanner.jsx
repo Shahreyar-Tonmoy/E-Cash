@@ -5,9 +5,10 @@ const CBanner = () => {
         <div>
         <div className="hero h-[75vh]"
           style={{ backgroundImage: "url(https://i.ibb.co/zFTNScn/cbanner.jpg)" }}>
-          <div className="hero-overlay bg-opacity-60"></div>
-          <div className="hero-content  text-white ">
-            <div className="">
+          <div className="hero-overlay bg-opacity-60">
+          </div>
+           <div className="flex justify-around">
+           <div >
               <h4 className="font-bold text-2xl text-white">Feel free to</h4>
               <h2 className=" text-5xl font-bold text-white  ">
               Contact Us
@@ -27,9 +28,12 @@ const CBanner = () => {
               Learn how to use our system!
               </button>
             </div>
+            <div>
+
+            </div>
+           </div>
           </div>
         </div>
-      </div>
     );
   };
 

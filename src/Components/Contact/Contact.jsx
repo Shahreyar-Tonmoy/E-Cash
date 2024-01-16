@@ -1,5 +1,7 @@
 import CBanner from "./CBanner";
 import emailjs from 'emailjs-com';
+import { MdOutlineMailOutline, MdOutlinePhoneInTalk } from "react-icons/md";
+import { FaMapMarkedAlt } from "react-icons/fa";
 
 
 const Contact = () => {
@@ -18,10 +20,10 @@ const Contact = () => {
     return (
         <div>
             <CBanner></CBanner>
-        <div className="flex m-10">
-          <div className="m-6">
+        <div className="flex m-10 bg-stone-100">
+          <div className="m-14 gap-5">
             <h2 className='text-center font-bold text-4xl mt-4'> Contact Form</h2>
-            <form  onSubmit={sendEmail} className="max-w-md mx-auto mt-10 p-6 bg-green-300 rounded-md shadow-md">
+            <form  onSubmit={sendEmail} className="max-w-md mx-auto mt-10 p-6 bg-sky-300 rounded-md shadow-md">
             <label className="block  text-sm font-bold mb-2" htmlFor="name">
             Full Name
             </label>
@@ -66,8 +68,17 @@ const Contact = () => {
             </form>
          </div>
 
-         <div className="m-8">
-             <h2 className="text-center font-bold text-4xl mt-4">Have Any Queries? </h2>
+         <div className="m-14">
+             <h2 className="text-center font-bold text-4xl m-4">Have Any Queries? </h2>
+             <p className="text-xl">We are constantly growing, and expanding our operation globally.If
+                <br />
+                 you have any queries, please give us a call or submit the form here.
+             </p>
+             <div >
+             <p><MdOutlinePhoneInTalk  className="bg-blue-400 text-4xl m-6 rounded-xl"/>+880 1315000207</p>
+             <p><MdOutlineMailOutline className="bg-blue-400 text-4xl m-6 rounded-xl"/>E-Cash@gmail.com</p>
+             <p><FaMapMarkedAlt className="bg-blue-400 text-4xl m-6 rounded-xl"/>Dhaka,Bangladesh</p>
+             </div>
          </div>
         </div>
     </div>
