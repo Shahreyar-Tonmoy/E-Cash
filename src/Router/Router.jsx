@@ -3,6 +3,7 @@ import MainLayOut from "../LayOut/MainLayOut";
 import Home from "../Home/Home";
 import Error from "../Error/Error";
 import DigitalBankingHome from "../Components/DigitalBanking/DigitalBankingHome";
+import Contact from "../Components/Contact/Contact";
 
 
 const Router = createBrowserRouter([
@@ -21,6 +22,10 @@ const Router = createBrowserRouter([
                 path: "digitalBankingHome",
                 element: <DigitalBankingHome></DigitalBankingHome>
 
+            },
+            {
+                path: "/contact",
+                element: <Contact></Contact>,
             },
 
 

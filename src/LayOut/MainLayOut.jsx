@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
-
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
 
 const MainLayOut = () => {
-    return (
-        <div>
-
-            <div className=" min-h-screen">
-                <Outlet></Outlet>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <Header></Header>
+      <Outlet />
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default MainLayOut;
