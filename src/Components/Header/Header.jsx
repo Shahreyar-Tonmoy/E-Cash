@@ -5,30 +5,30 @@ import { RiMenu3Line } from "react-icons/ri";
 
 const Header = () => {
   return (
-    <div className="bg-violet-400">
+    <div className="bg-gradient-to-r from-[#19123E] to-[#040C3A]">
         <div className="navbar flex justify-between max-w-screen-lg mx-auto ">
       <div className="flex-1">
-        <a className="btn hover:bg-transparent btn-ghost text-xl">E-Cash</a>
+        <a className="btn hover:bg-transparent btn-ghost text-white text-xl">E-Cash</a>
       </div>
 
       {/* navigation section */}
 
       <div className="flex-none">
-        <ul className="menu hidden lg:flex menu-horizontal px-1">
+        <ul className="menu hidden gap-5 cursor-pointer text-white btn-ghost hover:bg-transparent lg:flex menu-horizontal px-1">
           <li>
-            <a>Home</a>
+            Home
           </li>
           <li>
-            <a>About</a>
+            About
           </li>
           <li>
-            <a>Contact</a>
+            Contact
           </li>
         </ul>
       </div>
 
       {/* drawer */}
-      <div className="lg:hidden">
+      <div className="lg:hidden z-20">
 
       <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
