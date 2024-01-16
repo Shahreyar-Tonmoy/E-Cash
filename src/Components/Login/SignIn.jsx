@@ -2,14 +2,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { useContext } from "react";
 import Swal from "sweetalert2";
-import { AuthContext } from "./Firebase/AuthProvider";
-// import picture from "../../assets/LoginBanner.png"
 import picture from "../../assets/images/login-bg.jpg";
+import { AuthContext } from "./Firebase/AuthProvider";
 
 const SignIn = () => {
   const { signInUser, SignInWithGoogle } = useContext(AuthContext);
   const location = useLocation();
-  //   const [errorMassage, setErrorMassage] = useState();
 
   const navigate = useNavigate();
 
@@ -21,15 +19,24 @@ const SignIn = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result.user);
+        console.log(result.user);
         if (result.user) {
-          Swal("Good job!", "You are sign in!", "success");
+          Swal.fire({
+            icon: "success",
+            title: "Well Done..",
+            text: `Sign In successful.`,
+          });
         }
 
         navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
         if (error) {
-          Swal("Error!", "Invalid email or password", "error");
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error.message}`,
+          });
         }
       });
 

@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import { RiMenu3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Login/Firebase/AuthProvider";
 // import { RxCrossCircled } from "react-icons/rx";
 
 const Header = () => {
-  const user = false;
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="bg-violet-400 w-full sticky top-0 z-50">
