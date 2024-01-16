@@ -1,5 +1,6 @@
 
 import { RiMenu3Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 // import { RxCrossCircled } from "react-icons/rx";
 
 
@@ -21,8 +22,12 @@ const Header = () => {
           <li>
             About
           </li>
+<<<<<<< HEAD
+          <li> <Link to='/contact'><a>Contact</a></Link>
+=======
           <li>
             Contact
+>>>>>>> 4456637218bdac4b50f123ea495ecc70f5bc2728
           </li>
         </ul>
       </div>
