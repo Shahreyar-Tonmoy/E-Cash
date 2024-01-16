@@ -14,7 +14,7 @@ const Footer = () => {
           </aside>
           <nav>
             <header className=" text-white font-bold text-lg ">Services</header>
-            <a className="link link-hover">Campaign </a>
+            <a className="link link-hover">Campaigns </a>
             <a className="link link-hover">Help</a>
             <a className="link link-hover">Marketing</a>
             <a className="link link-hover">Advertisement</a>
@@ -24,7 +24,7 @@ const Footer = () => {
             <a className="link link-hover"></a>
             <a className="link link-hover">About us</a>
             <a className="link link-hover">Contact</a>
-            <a className="link link-hover">Carrier </a>
+            <a className="link link-hover">Carriers </a>
           </nav>
           <nav>
             <header className=" text-white font-bold text-lg ">Legal</header>

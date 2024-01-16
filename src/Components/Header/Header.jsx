@@ -2,10 +2,29 @@ import { useContext } from "react";
 import { RiMenu3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Login/Firebase/AuthProvider";
+import Swal from "sweetalert2";
 // import { RxCrossCircled } from "react-icons/rx";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "Good job!",
+          text: "Sign Out Successful.",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Unexpected error!",
+          text: `${error.message}`,
+          icon: "error",
+        });
+      });
+  };
 
   return (
     <div className="bg-violet-400 w-full sticky top-0 z-50">
@@ -29,13 +48,13 @@ const Header = () => {
             </li>
             {user ? (
               <li>
-                <Link to={"signOut"}>
-                  <button>Sign Out</button>
-                </Link>
+                <button onClick={handleLogout}>Sign Out</button>
               </li>
             ) : (
               <li>
-                <button>Sign In</button>
+                <Link to={"/signIn"}>
+                  <button>Sign In</button>
+                </Link>
               </li>
             )}
           </ul>
@@ -79,11 +98,13 @@ const Header = () => {
                 </li>
                 {user ? (
                   <li>
-                    <button>Sign Out</button>
+                    <button onClick={handleLogout}>Sign Out</button>
                   </li>
                 ) : (
                   <li>
-                    <button>Sign In</button>
+                    <Link to={"/signIn"}>
+                      <button>Sign In</button>
+                    </Link>
                   </li>
                 )}
               </ul>

@@ -116,7 +116,7 @@ const SignIn = () => {
           <h1 className="text-center text-white">
             Do not have an account?{" "}
             <span className="font-bold text-[#08093F] ">
-              <Link to={"/signUp"}>Register</Link>{" "}
+              <Link to={"/signUp"}> Sign Up</Link>{" "}
             </span>
           </h1>
           <h1 className="text-center text-2xl font-semibold">or</h1>

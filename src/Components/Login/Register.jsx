@@ -35,7 +35,11 @@ const Register = () => {
           .then((result) => {
             console.log(result.user);
             if (result.user) {
-              Swal("Thanks For!", "Register!", "success");
+              Swal.fire({
+                title: "Good job!",
+                text: "Sign Up Successful.",
+                icon: "success",
+              });
               updateUserInfo({
                 displayName: name,
                 photoURL: photo,
