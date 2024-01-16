@@ -1,77 +1,68 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-unknown-property */
-
-import { useContext, useState } from "react";
-import { AiFillGoogleCircle } from "react-icons/ai";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "./Firebase/AuthProvider";
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-// import picture from "../../assets/Register.png";
+import signUpBg from "../../assets/images/login-bg.jpg";
+import { AuthContext } from "./Firebase/AuthProvider";
 
 const Register = () => {
-  // const { createUser, updateUserInfo } = useContext(AuthContext)
   const { createUser, updateUserInfo } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [error, setError] = useState("");
-  const [errorMassage, setErrorMassage] = useState();
 
-  const handleSignIn = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
+    const form = e.target;
 
-    const password = e.target.password.value;
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
+    const email = form.email.value;
 
+    const password = form.password.value;
+    const name = form.name.value;
+    const photo = form.photo.value;
     if (
       !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}/.test(
         password
       )
     ) {
-      setError(
-        "Minimum six characters, at least one letter, one number and one special character"
-      );
-      Swal(
-        "Error!",
-        `Minimum six characters, at least one letter, one number and one special character`,
-        "error"
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Minimum six characters, at least one letter, one number and one special character",
+      });
     } else {
-      setError("");
       if (email) {
         createUser(email, password)
           .then((result) => {
+            console.log(result.user);
             if (result.user) {
               Swal("Thanks For!", "Register!", "success");
               updateUserInfo({
                 displayName: name,
                 photoURL: photo,
               });
-
               e.target.reset();
               navigate(location?.state ? location?.state : "/");
             }
           })
           .catch((error) => {
-            setErrorMassage(error.message);
-            setErrorMassage(errorMassage);
             if (error) {
-              Swal("Error!", errorMassage, "error");
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `${error.message}`,
+              });
             }
           });
       }
     }
 
-    console.log(email, password);
+    console.log(email, password, name, photo);
   };
 
   return (
     <div
-      className="bg-cover bg-no-repeat"
-      //   style={{ backgroundImage: `url(${picture})` }}
+      className="bg-cover bg-no-repeat w-full"
+      style={{ backgroundImage: `url(${signUpBg})` }}
     >
       <div className="max-w-screen-xl mx-auto  py-40 -mt-28 flex justify-end ">
         <div className="card glass flex-shrink-0 w-full max-w-sm mx-auto lg:mx-0  ">
@@ -80,10 +71,11 @@ const Register = () => {
                         Register
                     </h3>
                 </div> */}
-          <form onSubmit={handleSignIn} className="card-body">
+          <form onSubmit={handleSignUp} className="card-body">
+            <h3 className="text-3xl font-bold text-white">Sign Up</h3>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Name</span>
+                <span className="label-text text-white">Name</span>
               </label>
               <input
                 type="text"
@@ -95,7 +87,7 @@ const Register = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">PhotoURL</span>
+                <span className="label-text  text-white">PhotoURL</span>
               </label>
               <input
                 type="text"
@@ -107,7 +99,7 @@ const Register = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text text-white">Email</span>
               </label>
               <input
                 type="email"
@@ -119,7 +111,7 @@ const Register = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text text-white">Password</span>
               </label>
               <input
                 type="password"
@@ -129,20 +121,23 @@ const Register = () => {
                 required
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
+                <a
+                  href="#"
+                  className="label-text-alt link link-hover text-white"
+                >
                   Forgot password?
                 </a>
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-gradient-to-tr from-[#9CDEDD] to-[#72d0cf] border-none text-white shadow-lg shadow-[#83c7c6]">
+              <button className="btn bg-gradient-to-tr from-[#08093F] to-[#08093F] border-none text-white shadow-md shadow-[#0c1312]">
                 Register
               </button>
             </div>
           </form>
-          <h1 className="text-center mb-10 ">
-            Don't have an account?{" "}
-            <span className="text-[#3f9290] font-bold">
+          <h1 className="text-center mb-10  text-white">
+            Do not have an account?{" "}
+            <span className="text-[#08093F] font-bold">
               <Link to={"/SignIn"}>Sign In</Link>{" "}
             </span>
           </h1>
