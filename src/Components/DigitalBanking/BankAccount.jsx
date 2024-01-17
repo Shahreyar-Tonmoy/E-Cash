@@ -2,8 +2,8 @@
 const BankAccount = () => {
     return (
         <div>
-            <div className=" bg-base-200 pt-4 pb-4">
-                <div className="flex flex-col lg:flex-row">
+            <div className=" max-w-screen-lg mx-auto pt-4 pb-4">
+                <div className="flex flex-col items-center lg:flex-row">
 
                     <div className="lg:w-2/3 p-4 space-y-8">
                         <h1 className="text-xl text-amber-500 lg:text-2xl xl:text-3xl font-bold">Bank Account</h1>

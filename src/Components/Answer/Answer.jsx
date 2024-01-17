@@ -2,7 +2,7 @@
 
 const Answer = () => {
     return (
-    <div className="max-w-7xl mx-auto my-6 shadow-lg bg-white">
+    <div className="my-6 max-w-screen-xl mx-auto ">
       <div>
         <h1 className="text-4xl font-bold">FAQs</h1>
         <h4 className="text-2xl font-semibold my-2">Account</h4>

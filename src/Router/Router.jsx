@@ -2,10 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayOut from "../LayOut/MainLayOut";
 import Home from "../Home/Home";
 import Error from "../Error/Error";
-import SignIn from "../Components/Login/SignIn";
-import Register from "../Components/Login/Register";
+
+
 import DigitalBankingHome from "../Components/DigitalBanking/DigitalBankingHome";
 import Contact from "../Components/Contact/Contact";
+import SignIn from "../Components/Login/SignIn";
+import Register from "../Components/Login/Register";
 
 const Router = createBrowserRouter([
   {

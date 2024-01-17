@@ -2,10 +2,11 @@
 const GetStarted = () => {
     return (
         <div>
-            <div className=" hero min-h-screen" style={{ backgroundImage: 'url(https://i.ibb.co/dkp5DfD/stair.jpg)' }}>
+            <div className=" hero h-[70vh]" style={{ backgroundImage: 'url(https://i.ibb.co/dkp5DfD/stair.jpg)' }}>
                 <div className="hero-overlay bg-opacity-40"></div>
 
-                <div className="hero-content text-neutral-content flex justify-between items-center gap-96">
+                <div>
+                    <div className="hero-content  text-neutral-content lg:flex justify-between items-center lg:gap-96">
                     {/* left side content */}
                     <div className="max-w-md text-left">
                         <img className="w-10px" src="https://i.ibb.co/qjwhbp6/bank8.png" alt="" />
@@ -15,6 +16,7 @@ const GetStarted = () => {
                     </div>
                     {/* right side content  */}
                     <button className="btn btn-primary text-right">Sign Up</button>
+                </div>
                 </div>
             </div>
         </div>

@@ -2,8 +2,8 @@
 const DebitCard = () => {
     return (
         <div>
-            <div className=" bg-base-200 pt-4 pb-4">
-                <div className="flex flex-col lg:flex-row">
+            <div className="max-w-screen-lg mx-auto pt-4 pb-4">
+                <div className="flex flex-col items-center lg:flex-row">
 
                     <div className="lg:w-1/3 p-4">
                         <img src="https://i.ibb.co/Q8zvpdf/bank5.jpg" className="w-full rounded-lg shadow-2xl" alt="Digital Banking Service" />
