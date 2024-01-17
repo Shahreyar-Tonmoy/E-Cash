@@ -12,10 +12,7 @@
   "dependencies": {
     "@emailjs/browser": "^3.12.1",
     "@react-icons/all-files": "^4.1.0",
-<<<<<<< HEAD
     "emailjs-com": "^3.2.0",
-=======
->>>>>>> fcb29b5919abd0313960b7b8bfe39d63720bccab
     "firebase": "^10.7.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
