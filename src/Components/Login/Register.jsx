@@ -142,7 +142,7 @@ const Register = () => {
           <h1 className="text-center mb-10  text-white">
             Do not have an account?{" "}
             <span className="text-[#08093F] font-bold">
-              <Link to={"/SignIn"}>Sign In</Link>{" "}
+              <Link to={"/signIn"}>Sign In</Link>{" "}
             </span>
           </h1>
         </div>

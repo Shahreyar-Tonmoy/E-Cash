@@ -47,7 +47,11 @@ const SignIn = () => {
       .then((result) => {
         console.log(result.user);
         if (result.user) {
-          Swal("Good job!", "You are sign in with google!", "success");
+          Swal.fire({
+            icon: "success",
+            title: "Well Done..",
+            text: `Sign In successful.`,
+          });
         }
         if (result.user) {
           navigate(location?.state ? location?.state : "/");
@@ -56,7 +60,11 @@ const SignIn = () => {
       .catch((error) => {
         console.log(error.massage);
         if (error.massage) {
-          Swal("Error!", `{${error.massage}}`, "error");
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error.message}`,
+          });
         }
       });
   };
