@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 
 import './index.css'
 import {
@@ -8,11 +8,7 @@ import {
 import Router from './Router/Router.jsx';
 import AuthProvider from './Components/Login/Firebase/AuthProvider.jsx';
 
-
-
-
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
      <RouterProvider router={Router} />

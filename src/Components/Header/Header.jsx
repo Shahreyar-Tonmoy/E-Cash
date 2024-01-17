@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { RiMenu3Line } from "react-icons/ri";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Login/Firebase/AuthProvider";
 // import { RxCrossCircled } from "react-icons/rx";
 
@@ -29,6 +29,7 @@ const Header = () => {
             tabIndex={0}
             className="dropdown-content hidden items-center py-1  gap-5 lg:flex cursor-pointer   z-[1] shadow  rounded-box "
           >
+
             <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
               <NavLink
                 to="/"
@@ -110,11 +111,13 @@ const Header = () => {
                 </li>
               </>
             )}
+
+
           </ul>
         </div>
 
         {/* drawer */}
-        <div className="lg:hidden z-20">
+        <div className="lg:hidden z-50">
           <div className="drawer">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
@@ -133,22 +136,96 @@ const Header = () => {
                 className="drawer-overlay"
               ></label>
 
-              <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+              <ul className=" p-4 w-80 min-h-full bg-gradient-to-r from-[#19123E] to-[#040C3A] text-base-content">
                 <div className="flex items-center justify-between">
                   <a className="btn hover:bg-transparent btn-ghost text-xl">
                     E-Cash
                   </a>
                 </div>
                 {/* Sidebar content here */}
-                <li>
-                  <a>Home</a>
+
+                <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "text-orange-500  underline"
+                    : "text-white"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
+              <NavLink
+                to="/contact"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "text-orange-500  underline"
+                    : "text-white"
+                }
+              >
+                Contact
+              </NavLink>
+            </li>
+            <li className="block  font-sans  font-bold leading-normal text-inherit antialiased">
+              <NavLink
+                to="/digitalBanking"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "text-orange-500  underline"
+                    : "text-white"
+                }
+              >
+                Digital Banking
+              </NavLink>
+            </li>
+
+            {user ? (
+              <>
+                <li
+                  onClick={hendleSignOut}
+                  className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased"
+                >
+                  <NavLink
+                    to="/SignIn"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "text-orange-500  underline"
+                        : "text-white"
+                    }
+                  >
+                    Sign Out
+                  </NavLink>
                 </li>
-                <li>
-                  <a>About</a>
+              </>
+            ) : (
+              <>
+                <li className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased">
+                  <NavLink
+                    to="/SignIn"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "text-orange-500  underline"
+                        : "text-white"
+                    }
+                  >
+                    Sign In
+                  </NavLink>
                 </li>
-                <li>
-                  <a>Contact</a>
-                </li>
+              </>
+            )}
+               
               </ul>
             </div>
           </div>
