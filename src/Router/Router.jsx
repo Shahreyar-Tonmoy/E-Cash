@@ -19,7 +19,7 @@ const Router = createBrowserRouter([
 
             },
             {
-                path: "/digitalBankingHome",
+                path: "/digitalBanking",
                 element: <DigitalBankingHome></DigitalBankingHome>
 
             },

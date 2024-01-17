@@ -11,7 +11,7 @@ const BankingBanner = () => {
                 <p className="py-6 text-black max-w-2xl text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quidem amet sint dolorum ea fugit, eveniet repudiandae mollitia quod quibusdam officia placeat iure tempora autem, perferendis sapiente dolorem sequi! Hic possimus nam amet libero? Delectus velit, dolore, saepe a non porro vitae impedit dolores ea libero nihil hic ipsa tempora nobis fugit itaque harum iure nam qui accusantium dolor asperiores veritatis! Laborum qui error tenetur iusto. Deserunt, hic itaque.</p>
                 <button className="btn btn-primary">Get Started</button>
             </div>
-            <img src="https://i.ibb.co/JQXfMc3/banking-service.jpg" className="absolute inset-0 w-full h-full object-cover" alt="Digital Banking Service" />
+            <img src="https://i.ibb.co/JQXfMc3/banking-service.jpg" className="absolute inset-0 w-full h-full object-cover opacity-80 " alt="Digital Banking Service" />
         </div>
 
     );
