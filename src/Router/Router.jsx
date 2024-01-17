@@ -4,6 +4,8 @@ import Home from "../Home/Home";
 import Error from "../Error/Error";
 import SignIn from "../Components/Login/SignIn";
 import Register from "../Components/Login/Register";
+import DigitalBankingHome from "../Components/DigitalBanking/DigitalBankingHome";
+import Contact from "../Components/Contact/Contact";
 
 const Router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const Router = createBrowserRouter([
       {
         path: "/signUp",
         element: <Register></Register>,
+      },
+      {
+        path: "/digitalBanking",
+        element: <DigitalBankingHome></DigitalBankingHome>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
     ],
   },

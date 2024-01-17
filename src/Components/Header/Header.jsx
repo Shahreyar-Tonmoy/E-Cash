@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { RiMenu3Line } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Login/Firebase/AuthProvider";
 import Swal from "sweetalert2";
 // import { RxCrossCircled } from "react-icons/rx";
@@ -27,16 +27,18 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-violet-400 w-full sticky top-0 z-50">
+    <div className="bg-gradient-to-r text-white from-[#19123E] py-3 to-[#040C3A] w-full sticky top-0 z-50">
       <div className="navbar flex justify-between max-w-screen-lg mx-auto ">
         <div className="flex-1">
-          <a className="btn hover:bg-transparent btn-ghost text-xl">E-Cash</a>
+          <a className="btn hover:bg-transparent btn-ghost text-xl text-white ">
+            E-Cash
+          </a>
         </div>
 
         {/* navigation section */}
 
         <div className="flex-none">
-          <ul className="menu hidden lg:flex menu-horizontal px-1">
+          {/* <ul className="menu hidden lg:flex menu-horizontal px-1">
             <li>
               <a>Home</a>
             </li>
@@ -52,6 +54,64 @@ const Header = () => {
               </li>
             ) : (
               <li>
+                <Link to={"/signIn"}>
+                  <button>Sign In</button>
+                </Link>
+              </li>
+            )}
+          </ul> */}
+          <ul
+            tabIndex={0}
+            className="dropdown-content hidden items-center py-1  gap-5 lg:flex cursor-pointer   z-[1] shadow  rounded-box "
+          >
+            <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "text-orange-500  underline"
+                    : "text-white"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
+              <NavLink
+                to="/contact"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "text-orange-500  underline"
+                    : "text-white"
+                }
+              >
+                Contact
+              </NavLink>
+            </li>
+            <li className="block  font-sans  font-bold leading-normal text-inherit antialiased">
+              <NavLink
+                to="/digitalBanking"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "text-orange-500  underline"
+                    : "text-white"
+                }
+              >
+                Digital Banking
+              </NavLink>
+            </li>
+            {user ? (
+              <li className="block  font-sans  font-bold leading-normal text-inherit antialiased">
+                <button onClick={handleLogout}>Sign Out</button>
+              </li>
+            ) : (
+              <li className="block  font-sans  font-bold leading-normal text-inherit antialiased">
                 <Link to={"/signIn"}>
                   <button>Sign In</button>
                 </Link>
