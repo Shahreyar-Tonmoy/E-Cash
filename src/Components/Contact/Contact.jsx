@@ -1,5 +1,6 @@
 import CBanner from "./CBanner";
-import emailjs from 'emailjs-com';
+// import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import { MdOutlineMailOutline, MdOutlinePhoneInTalk } from "react-icons/md";
 import { FaMapMarkedAlt } from "react-icons/fa";
 

@@ -1,10 +1,20 @@
+import { useContext } from "react";
 import { RiMenu3Line } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Login/Firebase/AuthProvider";
 // import { RxCrossCircled } from "react-icons/rx";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const hendleSignOut = () => {
+    logOut()
+      .then(() => console.log("logout done"))
+      .catch((error) => console.log(error.massage));
+  };
+
   return (
-    <div className="bg-gradient-to-r from-[#19123E] py-3 to-[#040C3A]">
+    <div className="bg-gradient-to-r static top-0 z-50 from-[#19123E] py-3 to-[#040C3A]">
       <div className="navbar flex justify-between max-w-screen-lg mx-auto ">
         <div className="flex-1">
           <a className="btn hover:bg-transparent btn-ghost text-white text-xl">
@@ -15,30 +25,6 @@ const Header = () => {
         {/* navigation section */}
 
         <div className="flex-none">
-          {/* <ul className="menu hidden gap-5 cursor-pointer  btn-ghost hover:bg-transparent lg:flex menu-horizontal px-1">
-            <li className="block p-1  font-sans text-lg font-bold leading-normal text-inherit antialiased">
-              <NavLink
-                to="/"
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "text-red-500  underline"
-                    : "text-white"
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>About</li>
-            <li>
-              {" "}
-              <Link to="/contact">
-                <a>Contact</a>
-              </Link>
-            </li>
-          </ul> */}
-
           <ul
             tabIndex={0}
             className="dropdown-content hidden items-center py-1  gap-5 lg:flex cursor-pointer   z-[1] shadow  rounded-box "
@@ -86,7 +72,44 @@ const Header = () => {
               </NavLink>
             </li>
 
-
+            {user ? (
+              <>
+                <li
+                  onClick={hendleSignOut}
+                  className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased"
+                >
+                  <NavLink
+                    to="/SignIn"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "text-orange-500  underline"
+                        : "text-white"
+                    }
+                  >
+                    Sign Out
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased">
+                  <NavLink
+                    to="/SignIn"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "text-orange-500  underline"
+                        : "text-white"
+                    }
+                  >
+                    Sign In
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
 
