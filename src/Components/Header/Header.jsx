@@ -9,15 +9,11 @@ import DropDown from "./Dropdown/DropDown";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
 
- 
-
   return (
     <div className=" py-3 ">
       <div className="navbar flex justify-between max-w-screen-lg mx-auto ">
         <div className="flex-1">
-          <a className="btn hover:bg-transparent btn-ghost  text-xl">
-            E-Cash
-          </a>
+          <a className="btn hover:bg-transparent btn-ghost  text-xl">E-Cash</a>
         </div>
 
         {/* navigation section */}
@@ -70,9 +66,7 @@ const Header = () => {
               </NavLink>
             </li>
             {user ? (
-              <>
-                
-              </>
+              <></>
             ) : (
               <>
                 <li className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased">
@@ -91,12 +85,8 @@ const Header = () => {
                 </li>
               </>
             )}
-            
 
-            {
-              user && <DropDown></DropDown>
-            }
-            
+            {user && <DropDown></DropDown>}
           </ul>
         </div>
 
@@ -171,33 +161,27 @@ const Header = () => {
                   </NavLink>
                 </li>
                 {user ? (
-              <>
-                
-              </>
-            ) : (
-              <>
-                <li className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased">
-                  <NavLink
-                    to="/SignIn"
-                    className={({ isActive, isPending }) =>
-                      isPending
-                        ? "pending"
-                        : isActive
-                        ? "text-orange-500  underline"
-                        : "text-black"
-                    }
-                  >
-                    Sign In
-                  </NavLink>
-                </li>
-              </>
-            )}
-            
+                  <></>
+                ) : (
+                  <>
+                    <li className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased">
+                      <NavLink
+                        to="/SignIn"
+                        className={({ isActive, isPending }) =>
+                          isPending
+                            ? "pending"
+                            : isActive
+                            ? "text-orange-500  underline"
+                            : "text-black"
+                        }
+                      >
+                        Sign In
+                      </NavLink>
+                    </li>
+                  </>
+                )}
 
-            {
-              user && <DropDown></DropDown>
-            }
-                
+                {user && <DropDown></DropDown>}
               </ul>
             </div>
           </div>
