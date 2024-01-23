@@ -4,9 +4,10 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import picture from "../../assets/images/login-bg.jpg";
 import { AuthContext } from "./Firebase/AuthProvider";
+import Social from "./Social";
 
 const SignIn = () => {
-  const { signInUser, SignInWithGoogle } = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -42,32 +43,7 @@ const SignIn = () => {
 
     console.log(email, password);
   };
-  const handleGoogle = () => {
-    SignInWithGoogle()
-      .then((result) => {
-        console.log(result.user);
-        if (result.user) {
-          Swal.fire({
-            icon: "success",
-            title: "Well Done..",
-            text: `Sign In successful.`,
-          });
-        }
-        if (result.user) {
-          navigate(location?.state ? location?.state : "/");
-        }
-      })
-      .catch((error) => {
-        console.log(error.massage);
-        if (error.massage) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: `${error.message}`,
-          });
-        }
-      });
-  };
+  
 
   return (
     <div
@@ -127,17 +103,8 @@ const SignIn = () => {
               <Link to={"/signUp"}> Sign Up</Link>{" "}
             </span>
           </h1>
-          <h1 className="text-center text-2xl font-semibold">or</h1>
-          <span className="flex justify-center items-center mt-4 mb-10  gap-1">
-            <h1 onClick={handleGoogle} className="text-2xl cursor-pointer">
-              <span className="text-[#4285F4] font-semibold">G</span>
-              <span className="text-[#EA4335] font-semibold">o</span>
-              <span className="text-[#FBBC05] font-semibold">o</span>
-              <span className="text-[#4285F4] font-semibold">g</span>
-              <span className="text-[#34A853] font-semibold">l</span>
-              <span className="text-[#EA4335] font-semibold">e</span>
-            </h1>
-          </span>
+          
+            <Social></Social>
         </div>
       </div>
     </div>

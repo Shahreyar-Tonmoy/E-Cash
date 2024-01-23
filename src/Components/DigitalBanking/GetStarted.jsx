@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
+
+import { Link } from "react-router-dom";
 
 const GetStarted = () => {
     return (
@@ -15,7 +18,7 @@ const GetStarted = () => {
                         <h2 className="text-white">Your data is safe. It won’t affect your credit score!</h2>
                     </div>
                     {/* right side content  */}
-                    <button className="btn btn-primary text-right">Sign Up</button>
+                    <Link to={"/signUp"}><button className="btn bg-gradient-to-r from-[#19123E]  to-[#040C3A] text-white border-none text-right">Sign Up</button></Link>
                 </div>
                 </div>
             </div>

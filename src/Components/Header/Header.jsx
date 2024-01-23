@@ -1,23 +1,21 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import { RiMenu3Line } from "react-icons/ri";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Login/Firebase/AuthProvider";
+import DropDown from "./Dropdown/DropDown";
 // import { RxCrossCircled } from "react-icons/rx";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
 
-  const hendleSignOut = () => {
-    logOut()
-      .then(() => console.log("logout done"))
-      .catch((error) => console.log(error.massage));
-  };
+ 
 
   return (
-    <div className="bg-gradient-to-r static top-0 z-50 from-[#19123E] py-3 to-[#040C3A]">
+    <div className=" py-3 ">
       <div className="navbar flex justify-between max-w-screen-lg mx-auto ">
         <div className="flex-1">
-          <a className="btn hover:bg-transparent btn-ghost text-white text-xl">
+          <a className="btn hover:bg-transparent btn-ghost  text-xl">
             E-Cash
           </a>
         </div>
@@ -27,9 +25,8 @@ const Header = () => {
         <div className="flex-none">
           <ul
             tabIndex={0}
-            className="dropdown-content hidden items-center py-1  gap-5 lg:flex cursor-pointer   z-[1] shadow  rounded-box "
+            className="dropdown-content hidden items-center py-1  gap-5 lg:flex cursor-pointer   z-[1]  "
           >
-
             <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
               <NavLink
                 to="/"
@@ -37,8 +34,8 @@ const Header = () => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? "text-orange-500  underline"
-                    : "text-white"
+                    ? "text-violet-900  underline"
+                    : "text-black"
                 }
               >
                 Home
@@ -52,7 +49,7 @@ const Header = () => {
                     ? "pending"
                     : isActive
                     ? "text-orange-500  underline"
-                    : "text-white"
+                    : "text-black"
                 }
               >
                 Contact
@@ -66,32 +63,15 @@ const Header = () => {
                     ? "pending"
                     : isActive
                     ? "text-orange-500  underline"
-                    : "text-white"
+                    : "text-black"
                 }
               >
                 Digital Banking
               </NavLink>
             </li>
-
             {user ? (
               <>
-                <li
-                  onClick={hendleSignOut}
-                  className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased"
-                >
-                  <NavLink
-                    to="/SignIn"
-                    className={({ isActive, isPending }) =>
-                      isPending
-                        ? "pending"
-                        : isActive
-                        ? "text-orange-500  underline"
-                        : "text-white"
-                    }
-                  >
-                    Sign Out
-                  </NavLink>
-                </li>
+                
               </>
             ) : (
               <>
@@ -103,7 +83,7 @@ const Header = () => {
                         ? "pending"
                         : isActive
                         ? "text-orange-500  underline"
-                        : "text-white"
+                        : "text-black"
                     }
                   >
                     Sign In
@@ -111,16 +91,20 @@ const Header = () => {
                 </li>
               </>
             )}
+            
 
-
+            {
+              user && <DropDown></DropDown>
+            }
+            
           </ul>
         </div>
 
         {/* drawer */}
         <div className="lg:hidden z-50">
-          <div className="drawer">
+          <div className="drawer drawer-end overflow-hidden">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
+            <div className="drawer-content ">
               {/* Page content here */}
               <label
                 htmlFor="my-drawer"
@@ -129,7 +113,7 @@ const Header = () => {
                 <RiMenu3Line className="text-xl"></RiMenu3Line>
               </label>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side overflow-hidden">
               <label
                 htmlFor="my-drawer"
                 aria-label="close sidebar"
@@ -145,67 +129,50 @@ const Header = () => {
                 {/* Sidebar content here */}
 
                 <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
-              <NavLink
-                to="/"
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "text-orange-500  underline"
-                    : "text-white"
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
-              <NavLink
-                to="/contact"
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "text-orange-500  underline"
-                    : "text-white"
-                }
-              >
-                Contact
-              </NavLink>
-            </li>
-            <li className="block  font-sans  font-bold leading-normal text-inherit antialiased">
-              <NavLink
-                to="/digitalBanking"
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "text-orange-500  underline"
-                    : "text-white"
-                }
-              >
-                Digital Banking
-              </NavLink>
-            </li>
-
-            {user ? (
-              <>
-                <li
-                  onClick={hendleSignOut}
-                  className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased"
-                >
                   <NavLink
-                    to="/SignIn"
+                    to="/"
                     className={({ isActive, isPending }) =>
                       isPending
                         ? "pending"
                         : isActive
                         ? "text-orange-500  underline"
-                        : "text-white"
+                        : "text-black"
                     }
                   >
-                    Sign Out
+                    Home
                   </NavLink>
                 </li>
+                <li className="block p-1 font-sans  font-bold leading-normal text-inherit antialiased">
+                  <NavLink
+                    to="/contact"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "text-orange-500  underline"
+                        : "text-black"
+                    }
+                  >
+                    Contact
+                  </NavLink>
+                </li>
+                <li className="block  font-sans  font-bold leading-normal text-inherit antialiased">
+                  <NavLink
+                    to="/digitalBanking"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "text-orange-500  underline"
+                        : "text-black"
+                    }
+                  >
+                    Digital Banking
+                  </NavLink>
+                </li>
+                {user ? (
+              <>
+                
               </>
             ) : (
               <>
@@ -217,7 +184,7 @@ const Header = () => {
                         ? "pending"
                         : isActive
                         ? "text-orange-500  underline"
-                        : "text-white"
+                        : "text-black"
                     }
                   >
                     Sign In
@@ -225,7 +192,12 @@ const Header = () => {
                 </li>
               </>
             )}
-               
+            
+
+            {
+              user && <DropDown></DropDown>
+            }
+                
               </ul>
             </div>
           </div>

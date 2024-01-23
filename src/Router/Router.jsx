@@ -8,6 +8,8 @@ import DigitalBankingHome from "../Components/DigitalBanking/DigitalBankingHome"
 import Contact from "../Components/Contact/Contact";
 import SignIn from "../Components/Login/SignIn";
 import Register from "../Components/Login/Register";
+import DashBoardLayOut from "../DashBoard/DashBoard LayOut/DashBoardLayOut";
+import PrivateRoute from "../Components/Login/PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -37,6 +39,22 @@ const Router = createBrowserRouter([
       },
     ],
   },
+  {
+    path : "/dashboard",
+    element : <PrivateRoute><DashBoardLayOut></DashBoardLayOut></PrivateRoute>,
+    children : [
+
+        // admin
+
+
+        // {
+        //     path : "/dashboard/adminProfile",
+        //     element: <UserProfile></UserProfile>,
+        // },
+        
+
+    ]
+}
 ]);
 
 export default Router;

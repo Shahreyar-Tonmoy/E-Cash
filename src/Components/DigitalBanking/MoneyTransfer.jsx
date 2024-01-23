@@ -7,7 +7,7 @@ const MoneyTransfer = () => {
 
 
 
-                    <div className="lg:w-2/3  p-4 space-y-8">
+                    <div className="lg:w-2/3 mb-10 p-4 space-y-8">
                         <h1 className="text-xl text-amber-500 lg:text-2xl xl:text-3xl font-bold">Debit Card</h1>
                         <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold">E-Cash Mastercard</h1>
                         <h3 className=" font-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, cumque sit totam odit similique repellendus! Nemo  adipisicing elit. Consequatur, cumque sit totam odit similique repellendus! Nemo </h3>

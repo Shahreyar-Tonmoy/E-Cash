@@ -1,25 +1,79 @@
 
-// import img from '../../../assets/Image/Hero1.png';
+import { FaArrowRightLong } from "react-icons/fa6";
 
 
 const Hero = () => {
-    return (
-        <div className="hero h-[50vh] lg:h-[87vh]" style={{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/000/252/790/original/modern-gradient-flat-line-concept-web-banner-of-online-banking-with-decorated-small-people-character-landing-page-template-vector.jpg)` }}>
-        
-            <div className="hero-overlay bg-black bg-opacity-50"></div>
-           
-            <div className="hero-content text-center text-neutral-content">
-                <div className="">
-                    
-                    <p data-aos="fade"
-                    data-aos-easing="linear"
-                    data-aos-duration="2000" className="lg:mt-[450px] hidden lg:block  lg:text-xl text-slate-300 font-medium">At Head & Hand, we redefine interior design—optimizing spaces, organizing essentials, and creating empowering environments. Our designs seamlessly integrate your business identity, highlighting products for a lasting impact. Founded by Rakibul Ahsan, a top-tier designer on 99designs.com, we excel in interior design, logo/branding, printing, advertising, and special events worldwide. Ethical, minimal, and top-notch, we ensure your assets are never wasted.</p>
-                  
-                </div>
-                
+  return (
+    <div>
+        <div
+      className="hero min-h-screen "
+      style={{
+        backgroundImage:
+          "url(https://i.ibb.co/cJGr4rj/Purple-Creative-We-re-Digital-Marketing-Expert-Banner.png)",
+      }}
+    >
+      <div className="hero-overlay bg-opacity-30"></div>
+      <div className="text-neutral-content max-w-screen-xl mx-auto">
+        <div className="flex ml-32">
+          <div className=" ">
+            <h1 className="text-5xl font-Kanit text-start font-bold">
+              The New E-Cash App Is 
+              <span className="mt-5"> Available Soon</span>
+            </h1>
+            <div className="flex items-center mt-5 gap-2 text-violet-900 hover:underline">
+            <h1 className="text-xl font-Ubuntu  text-start cursor-pointer  font-semibold">
+              Learn more about the new features
+            </h1>
+            <span className="hover:translate-x-2 transition-transform "><FaArrowRightLong /></span>
             </div>
+
+            <h1 className="text-2xl border-b w-fit text-start mt-5   font-semibold">
+              Scan the code for more details.
+            </h1>
+            <div>
+              <div className="flex items-center mt-16">
+                <div className="flex items-center ">
+                  <img
+                    className="w-32 "
+                    src="https://i.ibb.co/qybf9jY/Untitled-1-1.png"
+                    alt=""
+                  />
+                  <div className="divider  lg:divider-horizontal"></div>
+                </div>
+
+                <div className="flex flex-col justify-start">
+                    <button className="btn bg-transparent text-violet-950 hover:bg-transparent hover:border-violet-950 rounded-2xl border-violet-950  border">Register</button>
+                    <h1>Register to experience</h1>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+          <div className="w-[1200px]">
+            <img
+              className="object-cover"
+              src="https://i.ibb.co/dPc3Mwc/6594622.webp"
+              alt=""
+            />
+          </div>
         </div>
-    );
+      </div>
+    </div>
+
+    <div className="border-b ">
+    <div className="flex gap-2 my-10 items-center justify-center">
+    <h1 className="text-center  text-xl font-semibold">Need to connect E-Cash with your online store? <span className="text-violet-800">Sign up for a Agent account</span></h1>
+    <FaArrowRightLong className="text-violet-900" />
+    </div>
+    
+
+    </div>
+
+
+    </div>
+  );
 };
 
 export default Hero;

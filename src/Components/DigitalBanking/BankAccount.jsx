@@ -1,7 +1,7 @@
 
 const BankAccount = () => {
     return (
-        <div>
+        <div className="bg-stone-100">
             <div className=" max-w-screen-lg mx-auto pt-4 pb-4">
                 <div className="flex flex-col items-center lg:flex-row">
 
