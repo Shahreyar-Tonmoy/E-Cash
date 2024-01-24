@@ -49,20 +49,20 @@ const CurrencyCalculator = () => {
   <div className="hero-overlay bg-opacity-20"></div>
     <div className="hero min-h-screen ">
   <div className="hero-content text-white flex-col  py-16 lg:py-0 justify-between lg:flex-row">
-    <div className="text-center px-10 lg:mx-40 lg:text-left">
+    <div className="text-center  lg:mx-40 lg:text-left">
       <h1 className="lg:text-5xl text-3xl mx-10 lg:mx-0 leading-normal font-Ubuntu font-bold">You Can Calculate <span className="text-violet-900">Your Currency</span></h1>
       <p className="py-6 leading-7 font-Kanit text-sm">Certainly, I can provide information about various currencies. Could you please specify which currency you are interested in?</p>
     </div>
     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
     <div className="flex justify-center items-center">
       <div>
-        <div className="relative flex flex-col mb-10 mt-5 text-gray-700 bg-white  w-96 rounded-xl bg-clip-border">
-          <div className="relative grid mx-4 mb-4  overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-r from-[#B46EA3] to-[#6F74BE] bg-clip-border shadow-gray-900/20">
-            <h3 className="block font-sans text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
+        <div className="relative flex flex-col mb-10 mt-5 text-gray-700 bg-white lg:w-96 w-72  rounded-xl bg-clip-border">
+          <div className="relative grid mx-3 lg:mx-6 mb-4  overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-r from-[#B46EA3] to-[#6F74BE] bg-clip-border shadow-gray-900/20">
+            <h3 className="block font-sans text-lg lg:text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
               Currency Calculator
             </h3>
           </div>
-          <div className="flex flex-col gap-4 p-6">
+          <div className="flex flex-col gap-4 py-6 px-3 lg:py-6 lg:px-6 lg:p-6">
             {/* Amaount section */}
 
             <div className="relative h-11 w-full min-w-[200px]">

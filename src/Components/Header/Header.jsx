@@ -15,8 +15,6 @@ import { GoSignIn } from "react-icons/go";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
 
- 
-
   return (
     <div className=" py-3 ">
       <div className="navbar flex justify-between max-w-screen-lg mx-auto ">
@@ -76,9 +74,7 @@ const Header = () => {
               </NavLink>
             </li>
             {user ? (
-              <>
-                
-              </>
+              <></>
             ) : (
               <>
                 <li className="block p-1 font-sans text-lg font-bold leading-normal text-inherit antialiased">
@@ -97,12 +93,8 @@ const Header = () => {
                 </li>
               </>
             )}
-            
 
-            {
-              user && <DropDown></DropDown>
-            }
-            
+            {user && <DropDown></DropDown>}
           </ul>
         </div>
 
