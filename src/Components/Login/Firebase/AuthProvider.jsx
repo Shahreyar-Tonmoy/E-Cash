@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
@@ -11,10 +13,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "./Firebase.init";
+import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
-
+const axiosPublic = UseAxiosPublic()
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
@@ -43,14 +46,41 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => {
-      unSubscribe();
-    };
-  }, []);
+    const unSubscribe = onAuthStateChanged(auth, currentUser => {
+
+        const userEmail = currentUser?.email || user?.email
+        const loggedUser = {email : userEmail}
+        setLoading(false)
+        setUser(currentUser)
+        
+
+        if(currentUser){
+            const userInfo = {email: currentUser.email}
+            axiosPublic.post('/jwt',userInfo)
+            .then(res =>{
+                if(res.data.token){
+                    localStorage.setItem("access-token",res.data.token)
+                    setLoading(false)
+                }
+            })
+            
+
+
+        }
+        else{
+           localStorage.removeItem("access-token")
+           setLoading(false)
+        }
+
+        return () => {
+            unSubscribe()
+        }
+
+    })
+    
+
+
+}, [])
 
   const AuthInfo = {
     user,
@@ -61,7 +91,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUserInfo,
   };
-  console.log(user);
+  // console.log(user);
 
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>

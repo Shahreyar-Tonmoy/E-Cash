@@ -2,14 +2,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { useContext } from "react";
 import Swal from "sweetalert2";
-import picture from "../../assets/images/login-bg.jpg";
+// import picture from "../../assets/images/login-bg.jpg";
+import bg from "../../assets/images/image.jpg";
 import { AuthContext } from "./Firebase/AuthProvider";
+import Social from "./Social";
 
 const SignIn = () => {
-  const { signInUser, SignInWithGoogle } = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
   const location = useLocation();
 
   const navigate = useNavigate();
+
+
+
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -18,18 +23,20 @@ const SignIn = () => {
     const password = e.target.password.value;
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
-        console.log(result.user);
-        if (result.user) {
+       
+        
+        if (result?.user) {
           Swal.fire({
             icon: "success",
             title: "Well Done..",
             text: `Sign In successful.`,
-          });
+          })
         }
-
-        navigate(location?.state ? location?.state : "/");
+        if (result?.user) {
+          navigate(location?.state ? location?.state : "/"  )
+        }
       })
+
       .catch((error) => {
         if (error) {
           Swal.fire({
@@ -40,107 +47,86 @@ const SignIn = () => {
         }
       });
 
-    console.log(email, password);
-  };
-  const handleGoogle = () => {
-    SignInWithGoogle()
-      .then((result) => {
-        console.log(result.user);
-        if (result.user) {
-          Swal.fire({
-            icon: "success",
-            title: "Well Done..",
-            text: `Sign In successful.`,
-          });
-        }
-        if (result.user) {
-          navigate(location?.state ? location?.state : "/");
-        }
-      })
-      .catch((error) => {
-        console.log(error.massage);
-        if (error.massage) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: `${error.message}`,
-          });
-        }
-      });
+    
   };
 
   return (
-    <div
-      className="bg-cover bg-no-repeat w-full"
-      style={{ backgroundImage: `url(${picture})` }}
-    >
-      <div className="max-w-screen-xl mx-auto  py-40 -mt-28 justify-center ">
-        <div className="card glass flex-shrink-0 w-full max-w-sm mx-auto lg:mx-0  ">
-          {/* <div className="relative mx-4 -mt-6 mb-4 grid h-28 place-items-center overflow-hidden rounded-xl bg-gradient-to-tr from-[#6C63FF] to-[#6661d4] bg-clip-border text-white shadow-lg shadow-[#7c77db]">
-                    <h3 className="block font-sans text-3xl font-semibold leading-snug tracking-normal text-white antialiased">
-                        Sign In
-                    </h3>
-                </div> */}
-          <form onSubmit={handleSignIn} className="card-body">
-            <h3 className="text-3xl font-bold text-white">Sign In</h3>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white">Email</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="email"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white">Password</span>
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                className="input input-bordered"
-                required
-              />
-              <label className="label ">
-                <a
-                  href="#"
-                  className="label-text-alt link link-hover text-white"
+    <>
+      <div className="max-w-screen-xl mx-auto px-5 md:px-10 my-7 lg:my-10 rounded-md border ">
+        <div className="w-full text-black flex gap-5 justify-between items-center py-10">
+          <div className="w-2/3 hidden lg:flex justify-center items-center ">
+            <img src={bg} alt="" className="h-[500px] rounded-xl" />
+          </div>
+          <div className="w-full lg:w-1/3 shadow-lg rounded ">
+            <div className="bg-white max-w-md mx-auto py-5 p-8 rounded-xl ">
+              <form onSubmit={handleSignIn}>
+                <h3 className="text-xl md:text-2xl  font-semibold mb-5 text-center">
+                  Sign in to your account
+                </h3>
+                <div className="my-2">
+                  <label
+                    htmlFor="email"
+                    className="block py-2 ml-1 font-medium"
+                  >
+                    Email{" "}
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="w-full p-3 border-2 rounded"
+                    placeholder="Enter your Email"
+                    required
+                  />
+                </div>
+                <div className="my-2">
+                  <label
+                    htmlFor="password"
+                    className="block py-2 ml-1 font-medium"
+                  >
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="w-full p-3 border-2 rounded"
+                    placeholder="Enter your Password"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-[#008FD4] hover:bg-[#0870A1] text-white rounded mt-5 mb-6 duration-300"
                 >
-                  Forgot password?
-                </a>
-              </label>
+                  Sign In
+                </button>
+              </form>
+              <div className="divider">Or</div>
+              {/* <div>
+                <div className="flex justify-center items-center ">
+                  <BsGoogle
+                    onClick={handleSignInWithGoogle}
+                    className="text-3xl text-[#008FD4] cursor-pointer hover:text-[#0870A1] "
+                  />
+                </div>
+              </div> */}
+              <Social></Social>
+
+              <p className="text-gray-600 font-medium text-center my-4">
+                Do not have an account ?{" "}
+                <Link
+                  to={"/signUp"}
+                  className="font-bold text-[#008FD4] hover:text-[#0870A1]"
+                >
+                  Sign Up
+                </Link>
+              </p>
             </div>
-            <div className="form-control mt-6">
-              <button className="btn bg-gradient-to-tr from-[#08093F] to-[#08093F] border-none text-white shadow-md shadow-[#0c1312]">
-                Sign In
-              </button>
-            </div>
-          </form>
-          <h1 className="text-center text-white">
-            Do not have an account?{" "}
-            <span className="font-bold text-[#08093F] ">
-              <Link to={"/signUp"}> Sign Up</Link>{" "}
-            </span>
-          </h1>
-          <h1 className="text-center text-2xl font-semibold">or</h1>
-          <span className="flex justify-center items-center mt-4 mb-10  gap-1">
-            <h1 onClick={handleGoogle} className="text-2xl cursor-pointer">
-              <span className="text-[#4285F4] font-semibold">G</span>
-              <span className="text-[#EA4335] font-semibold">o</span>
-              <span className="text-[#FBBC05] font-semibold">o</span>
-              <span className="text-[#4285F4] font-semibold">g</span>
-              <span className="text-[#34A853] font-semibold">l</span>
-              <span className="text-[#EA4335] font-semibold">e</span>
-            </h1>
-          </span>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
