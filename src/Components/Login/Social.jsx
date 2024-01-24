@@ -28,8 +28,8 @@ const Social = () => {
       swal("Success", "You have successfully logged in!", "success");
 
       // Redirect to the previous page or homepage
-      const { from } = location.state || { from: { pathname: "/" } };
-      navigate(from);
+      navigate(location?.state ? location?.state : "/"  )
+      
     } catch (error) {
       // Show error message
       swal("Error", error.message, "error");
