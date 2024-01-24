@@ -175,7 +175,7 @@ const Register = () => {
       className="bg-cover bg-no-repeat w-full"
       style={{ backgroundImage: `url(${signUpBg})` }}
     >
-      <div className="max-w-screen-xl mx-auto  py-40 -mt-28 flex justify-end ">
+      <div className="max-w-screen-xl mx-auto  py-40  flex justify-end ">
         <div className="card glass flex-shrink-0 w-full max-w-sm mx-auto lg:mx-0  ">
           {/* <div className="relative mx-4 -mt-6 mb-4 grid h-28 place-items-center overflow-hidden rounded-xl bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-border text-white shadow-lg shadow-pink-500/40">
                     <h3 className="block font-sans text-3xl font-semibold leading-snug tracking-normal text-white antialiased">

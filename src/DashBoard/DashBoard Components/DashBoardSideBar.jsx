@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserMember from "../../Hooks/UseMember";
 import UserAdmin from "../../Hooks/UserAdmin";
+import { FaHome } from "react-icons/fa";
 
 
 
@@ -204,7 +205,17 @@ const DashBoardSideBar = () => {
 
             {/* logOut section */}
 
-        <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
+        <div className="  pt-4 flex flex-col  border-t">
+        <Link to={"/"}>
+                    <button
+                      
+                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                    >
+                      <FaHome/>
+                      <span className="group-hover:text-gray-700">Home</span>
+                    </button>
+                    </Link>
+
           <button onClick={hendleSignOut} className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
             <svg
               xmlns="http://www.w3.org/2000/svg"

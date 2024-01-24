@@ -3,7 +3,7 @@ import  { useContext } from 'react';
 
 // import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
 import { AuthContext } from './Firebase/AuthProvider';
 
@@ -11,7 +11,7 @@ const Social = () => {
     const { SignInWithGoogle } = useContext(AuthContext)
     const axiosPublic =UseAxiosPublic()
     const navigate = useNavigate()
-    
+    const location = useLocation()
 
     const hendleGoogle = () => {
 
@@ -34,7 +34,9 @@ const Social = () => {
                 
 
                 
-                navigate( "/")
+                        if (result?.user) {
+                            navigate(location?.state ? location?.state : "/"  )
+                          }
 
                     }
                     else{
@@ -42,7 +44,9 @@ const Social = () => {
                 
 
                 
-                navigate( "/")
+                        if (result?.user) {
+                            navigate(location?.state ? location?.state : "/"  )
+                          }
                     }
                 
                 console.log(res.data);

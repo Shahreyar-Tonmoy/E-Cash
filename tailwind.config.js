@@ -8,6 +8,7 @@ export default {
     fontFamily:{
       Ubuntu:['Ubuntu', "sans-serif"],
       Kanit: ['Kanit', "sans-serif"],
+      WorkSans: ['Work Sans', "sans-serif"]
     },
     extend: {},
   },

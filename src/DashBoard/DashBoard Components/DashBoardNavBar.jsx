@@ -1,26 +1,24 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import UserAdmin from "../../Hooks/UserAdmin";
 import UserMember from "../../Hooks/UseMember";
 import { RxCrossCircled } from "react-icons/rx";
+import { FaHome } from "react-icons/fa";
 const DashBoardNavBar = () => {
-
   const { user, logOut } = useContext(AuthContext);
-    const Navigate = useNavigate()
-    const hendleSignOut = () => {
-        logOut()
-          .then(() => {
-            Navigate("/")
-            console.log("logout done")
-        })
-          .catch((error) => console.log(error.massage));
-          
-      };
+  const Navigate = useNavigate();
+  const hendleSignOut = () => {
+    logOut()
+      .then(() => {
+        Navigate("/");
+        console.log("logout done");
+      })
+      .catch((error) => console.log(error.massage));
+  };
 
-      const [isAdmin] = UserAdmin()
-    const [isMember] = UserMember()
-
+  const [isAdmin] = UserAdmin();
+  const [isMember] = UserMember();
 
   return (
     <div>
@@ -64,53 +62,55 @@ const DashBoardNavBar = () => {
                   className="drawer-overlay"
                 ></label>
 
-                <ul className=" p-4 w-72 min-h-full bg-gradient-to-r from-[#19123E] to-[#040C3A] text-base-content">
-
+                <ul className=" p-4 w-72 min-h-full bg-white text-base-content">
                   {/* logo section */}
-          <div className="px-3 flex justify-between items-center ">
-            {/* <a href="#" title="home">
+                  <div className="px-3 flex justify-between items-center ">
+                    {/* <a href="#" title="home">
               <img
                 src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
                 className="w-32"
                 alt="tailus logo"
               />
             </a> */}
-            <h1 className="text-center text-white text-3xl font-semibold">E-Cash</h1>
-            <label
-                htmlFor="my-drawer"
-                aria-label="close sidebar"
-                className=" text-white text-2xl btn btn-ghost bg-transparent hover:bg-transparent "
-              ><RxCrossCircled></RxCrossCircled></label>
-          </div>
+                    <h1 className="text-center text-black text-3xl font-semibold">
+                      E-Cash
+                    </h1>
+                    <label
+                      htmlFor="my-drawer"
+                      aria-label="close sidebar"
+                      className=" text-black text-2xl btn btn-ghost bg-transparent hover:bg-transparent "
+                    >
+                      <RxCrossCircled></RxCrossCircled>
+                    </label>
+                  </div>
 
-          <div className="mt-8 text-center">
-            <img
-              src={user?.photoURL}
-              alt
-              className=" m-auto rounded-full object-cover lg:w-28 lg:h-28"
-            />
-            <h5 className=" text-white mt-4 text-xl font-semibold lg:block">
-              {user?.displayName}
-            </h5>
-            {
-              isAdmin && <span className=" text-white lg:block">Admin</span>
-            }
-            {
-              isMember && <span className=" text-white lg:block">Agent</span>
-            }
-            {
-              isAdmin || isMember === false && <span className=" text-white lg:block">User</span>
-            }
-
-          </div>
-
+                  <div className="mt-8 text-center">
+                    <img
+                      src={user?.photoURL}
+                      alt
+                      className=" m-auto rounded-full object-cover lg:w-28 lg:h-28"
+                    />
+                    <h5 className=" text-black mt-4 text-xl font-semibold lg:block">
+                      {user?.displayName}
+                    </h5>
+                    {isAdmin && (
+                      <span className=" text-black lg:block">Admin</span>
+                    )}
+                    {isMember && (
+                      <span className=" text-black lg:block">Agent</span>
+                    )}
+                    {isAdmin ||
+                      (isMember === false && (
+                        <span className=" text-black lg:block">User</span>
+                      ))}
+                  </div>
 
                   <ul className="space-y-2 tracking-wide mt-8">
                     <li>
                       <a
                         href="#"
                         aria-label="dashboard"
-                        className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
+                        className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black bg-gradient-to-r from-sky-600 to-cyan-400"
                       >
                         <svg
                           className="-ml-1 h-6 w-6"
@@ -241,27 +241,38 @@ const DashBoardNavBar = () => {
                     </li>
                   </ul>
 
-                  <div className="px-6  mt-5 pt-4 flex justify-between items-center border-t">
-          <button onClick={hendleSignOut} className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-              />
-            </svg>
-            <span className="group-hover:text-gray-700">Logout</span>
-          </button>
-        </div>
+                  <div className="px-2  mt-5 pt-4 flex flex-col border-t">
+                    <Link to={"/"}>
+                    <button
+                      
+                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                    >
+                      <FaHome/>
+                      <span className="group-hover:text-gray-700">Home</span>
+                    </button>
+                    </Link>
 
-
+                    <button
+                      onClick={hendleSignOut}
+                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        />
+                      </svg>
+                      <span className="group-hover:text-gray-700">Logout</span>
+                    </button>
+                  </div>
                 </ul>
               </div>
             </div>

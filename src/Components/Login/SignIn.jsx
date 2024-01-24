@@ -12,6 +12,9 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
+
+  console.log(location.state);
+
   const handleSignIn = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -20,17 +23,19 @@ const SignIn = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result.user);
-        console.log(result.user);
-        if (result.user) {
+        
+        if (result?.user) {
           Swal.fire({
             icon: "success",
             title: "Well Done..",
             text: `Sign In successful.`,
-          });
+          })
         }
-
-        navigate(location?.state ? location?.state : "/");
+        if (result?.user) {
+          navigate(location?.state ? location?.state : "/"  )
+        }
       })
+
       .catch((error) => {
         if (error) {
           Swal.fire({
@@ -43,14 +48,13 @@ const SignIn = () => {
 
     console.log(email, password);
   };
-  
 
   return (
     <div
       className="bg-cover bg-no-repeat w-full"
       style={{ backgroundImage: `url(${picture})` }}
     >
-      <div className="max-w-screen-xl mx-auto  py-40 -mt-28 justify-center ">
+      <div className="max-w-screen-xl mx-auto  py-40  justify-center ">
         <div className="card glass flex-shrink-0 w-full max-w-sm mx-auto lg:mx-0  ">
           {/* <div className="relative mx-4 -mt-6 mb-4 grid h-28 place-items-center overflow-hidden rounded-xl bg-gradient-to-tr from-[#6C63FF] to-[#6661d4] bg-clip-border text-white shadow-lg shadow-[#7c77db]">
                     <h3 className="block font-sans text-3xl font-semibold leading-snug tracking-normal text-white antialiased">
@@ -103,8 +107,8 @@ const SignIn = () => {
               <Link to={"/signUp"}> Sign Up</Link>{" "}
             </span>
           </h1>
-          
-            <Social></Social>
+
+          <Social></Social>
         </div>
       </div>
     </div>

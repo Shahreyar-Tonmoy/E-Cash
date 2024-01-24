@@ -28,7 +28,7 @@ export default function DropDown() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md font-bold  px-3 py-2   text-white shadow-sm   ">
+        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md font-bold  px-3 py-2   text-white   ">
         {user && (
               <>
                 <div className="">
@@ -56,7 +56,7 @@ export default function DropDown() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute  right-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-[#040C3A]   shadow-xl ring-1 ring-violet-500  ">
+        <Menu.Items className="absolute bg-white -right-12 lg:right-0 z-10 mt-2 w-44 origin-top-right rounded-md text-black   shadow-xl ring-1 ring-violet-500  ">
           <div className="py-3 px-6">
 
             <Menu.Item>
@@ -67,8 +67,8 @@ export default function DropDown() {
                   isPending
                     ? "pending"
                     : isActive
-                    ? "text-orange-500  underline"
-                    : "text-white hover:text-orange-500"
+                    ? "text-violet-900  underline"
+                    : "text-black hover:text-violet-900"
                 }
               >
                
@@ -98,8 +98,8 @@ export default function DropDown() {
                       isPending
                         ? "pending"
                         : isActive
-                        ? "text-orange-500  underline"
-                        : "text-white hover:text-orange-500"
+                        ? "text-violet-900 underline"
+                        : "text-black hover:text-violet-900"
                     }
                   >
                     Sign Out

@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 
-
 const FAQ = () => {
   return (
     <section className="relative  z-20 overflow-hidden pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
@@ -11,13 +10,10 @@ const FAQ = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mb-[60px] max-w-[520px] text-center lg:mb-20">
-              <span className="mb-2 block text-2xl font-semibold ">
-                FAQ
-              </span>
+              <span className="mb-2 block text-2xl font-semibold ">FAQ</span>
               <h2 className="mb-4 text-3xl font-bold text-dark  sm:text-[40px]/[48px]">
                 Any Questions? Look Here
               </h2>
-              
             </div>
           </div>
         </div>
@@ -33,8 +29,8 @@ const FAQ = () => {
               text="Businesses across sectors such as SMEs, e-commerce, freelancers, healthcare, nonprofits, and more can benefit from financial commerce platforms by improving efficiency in financial operations and transaction processing."
             />
             <AccordionItem
-              header="What features do these platforms typically offer?"
-              text="Financial commerce platforms commonly offer features like invoicing, secure payment processing, multi-currency support, and tools for financial record-keeping, providing comprehensive solutions for managing monetary transaction"
+              header="How do financial commerce platforms assist international businesses?"
+              text="Financial commerce platforms cater to international businesses by offering multi-currency support, global payment processing, and compliance with international financial regulations, facilitating smooth cross-border transaction"
             />
           </div>
           <div className="w-full px-4 lg:w-1/2">
@@ -46,9 +42,10 @@ const FAQ = () => {
               header="Are financial commerce platforms secure?"
               text="Yes, reputable financial commerce platforms prioritize security, implementing encryption protocols and compliance measures to ensure the safety of financial data and transactions. Users should choose platforms with robust security features and a track record of reliability."
             />
+
             <AccordionItem
-              header="How do financial commerce platforms assist international businesses?"
-              text="Financial commerce platforms cater to international businesses by offering multi-currency support, global payment processing, and compliance with international financial regulations, facilitating smooth cross-border transaction"
+              header="What features do these platforms typically offer?"
+              text="Financial commerce platforms commonly offer features like invoicing, secure payment processing, multi-currency support, and tools for financial record-keeping, providing comprehensive solutions for managing monetary transaction"
             />
           </div>
         </div>
@@ -67,16 +64,12 @@ const FAQ = () => {
             d="M193.307 -273.321L1480.87 1014.24L1121.85 1373.26C1121.85 1373.26 731.745 983.231 478.513 729.927C225.976 477.317 -165.714 85.6993 -165.714 85.6993L193.307 -273.321Z"
             fill="url(#paint0_linear)"
           />
-          <defs>
-            
-          </defs>
+          <defs></defs>
         </svg>
       </div>
     </section>
   );
 };
-
-
 
 const AccordionItem = ({ header, text }) => {
   const [active, setActive] = useState(false);
@@ -86,14 +79,18 @@ const AccordionItem = ({ header, text }) => {
     setActive(!active);
   };
   return (
-    <div className="mb-8 w-full rounded-lg  p-4  dark:bg-dark-2 dark:shadow-[0px_20px_95px_0px_rgba(0,0,0,0.30)] sm:p-8 lg:px-6 xl:px-8">
+    <div
+      className="mb-8 w-full rounded-lg  p-4  dark:bg-dark-2 
+    dark:shadow-[#9fa2d3] 
+     dark:shadow-[5px_20px_50px_5px_rgba(0,0,0,0.30)] sm:p-8 lg:px-6 xl:px-8"
+    >
       <button
         className={`faq-btn flex w-full text-left`}
         onClick={() => handleToggle()}
       >
         <div className="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary/5 text-primary dark:bg-white/5">
           <svg
-            className={`fill-primary stroke-primary duration-200 ease-in-out ${
+            className={`fill-[#B46EA3] stroke-[#6F74BE] duration-200 ease-in-out ${
               active ? "rotate-180" : ""
             }`}
             width="17"
@@ -110,9 +107,7 @@ const AccordionItem = ({ header, text }) => {
         </div>
 
         <div className="w-full">
-          <h4 className="mt-1 text-lg font-semibold text-dark ">
-            {header}
-          </h4>
+          <h4 className="mt-1 text-lg font-semibold text-dark ">{header}</h4>
         </div>
       </button>
 
@@ -129,4 +124,4 @@ const AccordionItem = ({ header, text }) => {
   );
 };
 
-export default FAQ
+export default FAQ;
