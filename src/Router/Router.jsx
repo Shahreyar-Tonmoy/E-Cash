@@ -12,6 +12,8 @@ import DashBoardLayOut from "../DashBoard/DashBoard LayOut/DashBoardLayOut";
 import PrivateRoute from "../Components/Login/PrivateRoute";
 import CurrencyCalculator from "../Components/Currency Calculator/CurrencyCalculator";
 import DashBoardHome from "../DashBoard/DashBoard Home/DashBoardHome";
+import AgentSendMoney from "../DashBoard/Agent Home/AgentSendMoney";
+import ProfileUpdate from "../DashBoard/Profile Update/profileUpdate";
 
 
 const Router = createBrowserRouter([
@@ -55,6 +57,14 @@ const Router = createBrowserRouter([
         {
             path : "/dashboard",
             element: <PrivateRoute><DashBoardHome></DashBoardHome></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/agent/sendMoney",
+            element: <PrivateRoute><AgentSendMoney></AgentSendMoney></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/profile",
+            element: <PrivateRoute><ProfileUpdate></ProfileUpdate></PrivateRoute>,
         },
         
         

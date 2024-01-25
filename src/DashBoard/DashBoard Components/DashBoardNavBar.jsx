@@ -88,7 +88,7 @@ const DashBoardNavBar = () => {
                     <img
                       src={user?.photoURL}
                       alt
-                      className=" m-auto rounded-full object-cover lg:w-28 lg:h-28"
+                      className=" m-auto rounded-full object-cover lg:w-20 lg:h-28"
                     />
                     <h5 className=" text-black mt-4 text-xl font-semibold lg:block">
                       {user?.displayName}
@@ -170,21 +170,21 @@ const DashBoardNavBar = () => {
                         </li>
 
                         <li className="mt-3">
-                          <NavLink
-                            to="/dashBoard"
-                            className={({ isActive, isPending }) =>
-                              isPending
-                                ? "pending"
-                                : isActive
-                                ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
-                                : "relative px-4 py-3 flex items-center space-x-4 "
-                            }
-                          >
-                            <span className="flex items-center gap-3 justify-center mx-auto">
-                              Agent
-                            </span>
-                          </NavLink>
-                        </li>
+                  <NavLink
+                    to="/dashboard/agent/sendMoney"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                      Send Money
+                    </span>
+                  </NavLink>
+                </li>
                       </>
                     )}
 
