@@ -36,7 +36,7 @@ const UseAxios = () => {
         console.log("status error", status)
         if(status === 401 || status === 403){
             logOut().then(()=>{
-                navigate('/signin')
+                navigate('/signIn')
             })
            
            
