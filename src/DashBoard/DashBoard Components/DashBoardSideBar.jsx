@@ -3,7 +3,10 @@ import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import UserMember from "../../Hooks/UseMember";
 import UserAdmin from "../../Hooks/UserAdmin";
-import { FaHome } from "react-icons/fa";
+import { FaHome,FaBalanceScaleLeft } from "react-icons/fa";
+import { FcMoneyTransfer } from "react-icons/fc";
+import { ImProfile } from "react-icons/im";
+import { IoHome } from "react-icons/io5";
 
 const DashBoardSideBar = () => {
   const [isAdmin] = UserAdmin();
@@ -158,14 +161,14 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
-                        DashBoard
+                      <IoHome className="w-8 h-8"/>
+                        User Home
                       </span>
                     </NavLink>
                   </li>
-
                   <li className="mt-3">
                     <NavLink
-                      to="/dashBoard"
+                      to="/dashboard/user/userprofile"
                       className={({ isActive, isPending }) =>
                         isPending
                           ? "pending"
@@ -175,7 +178,44 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
-                        user
+                      <ImProfile className="w-8 h-8"/>
+                        User Profile
+                      </span>
+                    </NavLink>
+                  </li>
+
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/sendmoney"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                      <FcMoneyTransfer className="w-8 h-8"/>
+                        Send Money
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/balancecheck"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                      <FaBalanceScaleLeft className="w-8 h-8"/>
+                      
+                      Balance Check
                       </span>
                     </NavLink>
                   </li>

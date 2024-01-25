@@ -2,8 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayOut from "../LayOut/MainLayOut";
 import Home from "../Home/Home";
 import Error from "../Error/Error";
-
-
 import DigitalBankingHome from "../Components/DigitalBanking/DigitalBankingHome";
 import Contact from "../Components/Contact/Contact";
 import SignIn from "../Components/Login/SignIn";
@@ -12,6 +10,8 @@ import DashBoardLayOut from "../DashBoard/DashBoard LayOut/DashBoardLayOut";
 import PrivateRoute from "../Components/Login/PrivateRoute";
 import CurrencyCalculator from "../Components/Currency Calculator/CurrencyCalculator";
 import DashBoardHome from "../DashBoard/DashBoard Home/DashBoardHome";
+import SentMoney from "../DashBoard/User Home/SentMoney/SentMoney";
+import UserProfile from "../DashBoard/User Home/UserProfile/UserProfile";
 
 
 const Router = createBrowserRouter([
@@ -55,6 +55,19 @@ const Router = createBrowserRouter([
         {
             path : "/dashboard",
             element: <PrivateRoute><DashBoardHome></DashBoardHome></PrivateRoute>,
+        },
+          // Perticepent(User)
+        {
+            path : "/dashboard/user/sendmoney",
+            element: <PrivateRoute><SentMoney></SentMoney></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/user/balancecheck",
+            element: <PrivateRoute><SentMoney></SentMoney></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/user/userprofile",
+            element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
         },
         
         
