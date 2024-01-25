@@ -11,6 +11,7 @@ import Register from "../Components/Login/Register";
 import DashBoardLayOut from "../DashBoard/DashBoard LayOut/DashBoardLayOut";
 import PrivateRoute from "../Components/Login/PrivateRoute";
 import CurrencyCalculator from "../Components/Currency Calculator/CurrencyCalculator";
+import DashBoardHome from "../DashBoard/DashBoard Home/DashBoardHome";
 
 const Router = createBrowserRouter([
   {
@@ -49,13 +50,12 @@ const Router = createBrowserRouter([
     element : <PrivateRoute><DashBoardLayOut></DashBoardLayOut></PrivateRoute>,
     children : [
 
-        // admin
-
-
-        // {
-        //     path : "/dashboard/adminProfile",
-        //     element: <UserProfile></UserProfile>,
-        // },
+      
+        {
+            path : "/dashboard",
+            element: <PrivateRoute><DashBoardHome></DashBoardHome></PrivateRoute>,
+        },
+        
         
 
     ]
