@@ -1,5 +1,4 @@
-import "flatpickr/dist/flatpickr.min.css";
-import "tailwindcss/tailwind.css";
+
 import { useForm } from "react-hook-form";
 
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
