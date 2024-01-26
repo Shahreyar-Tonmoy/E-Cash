@@ -63,6 +63,7 @@ const DashBoardSideBar = () => {
 
           <ul className="space-y-2 tracking-wide mt-8">
             {/* admin section */}
+            
             {isAdmin && (
               <>
                 <li className="mt-3">
@@ -72,7 +73,7 @@ const DashBoardSideBar = () => {
                       isPending
                         ? "pending"
                         : isActive
-                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
                         : "relative px-4 py-3 flex items-center space-x-4 "
                     }
                   >
@@ -112,7 +113,7 @@ const DashBoardSideBar = () => {
                       isPending
                         ? "pending"
                         : isActive
-                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
                         : "relative px-4 py-3 flex items-center space-x-4 "
                     }
                   >
@@ -134,7 +135,7 @@ const DashBoardSideBar = () => {
                     }
                   >
                     <span className="flex items-center gap-3 justify-center mx-auto">
-                      Send Money
+                    Cash In
                     </span>
                   </NavLink>
                 </li>
@@ -156,6 +157,26 @@ const DashBoardSideBar = () => {
                     </span>
                   </NavLink>
                 </li>
+
+
+                <li className="mt-3">
+                  <NavLink
+                    to="/dashboard/agent/transaction"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                    Transactions
+                    </span>
+                  </NavLink>
+                </li>
+
+
               </>
             )}
 
@@ -165,8 +186,25 @@ const DashBoardSideBar = () => {
               (isMember === false && (
                 <>
                   <li className="mt-3">
+                  <NavLink
+                    to="/dashBoard"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                      DashBoard
+                    </span>
+                  </NavLink>
+                </li>
+
+                  <li className="mt-3">
                     <NavLink
-                      to="/dashBoard"
+                      to="/dashboard/user/sendMoney"
                       className={({ isActive, isPending }) =>
                         isPending
                           ? "pending"
@@ -176,14 +214,32 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
-                        DashBoard
+                        Send Money
+                      </span>
+                    </NavLink>
+                  </li>
+
+
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/transaction"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                      Transactions
                       </span>
                     </NavLink>
                   </li>
 
                   <li className="mt-3">
                     <NavLink
-                      to="/dashBoard"
+                      to="/dashboard/profile"
                       className={({ isActive, isPending }) =>
                         isPending
                           ? "pending"
@@ -193,7 +249,7 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
-                        user
+                      Profile
                       </span>
                     </NavLink>
                   </li>

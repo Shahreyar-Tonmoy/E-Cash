@@ -1,19 +1,22 @@
 import { useContext, useState } from "react";
 import dateTime from "date-time";
-import UseAxios from "../../Hooks/UseAxios";
+
 import { useQuery } from "@tanstack/react-query";
-import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
+
 import swal from "sweetalert";
 import { v1 as uuidv4 } from "uuid";
-import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+
 import { useNavigate } from "react-router-dom";
-import ProfileUpdate from "../Profile Update/profileUpdate";
+import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
+import UseAxios from "../../Hooks/UseAxios";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import UserAdmin from "../../Hooks/UserAdmin";
 import UserMember from "../../Hooks/UseMember";
+import ProfileUpdate from "../Profile Update/profileUpdate";
 
 
 
-const AgentSendMoney = () => {
+const UserSendMoney = () => {
   const { user } = useContext(AuthContext);
   const axios = UseAxios();
   const axiosPublic = UseAxiosPublic();
@@ -32,7 +35,7 @@ const AgentSendMoney = () => {
     queryFn: async () => {
       const res = await fetch(`https://e-cash-server.vercel.app/users/${user?.email}`);
       return res.json();
-    },
+    }
   });
 
   if (isPending) {
@@ -59,7 +62,7 @@ const AgentSendMoney = () => {
     const From = data?.PhoneNumber;
     const FromRole = data?.Role;
 
-    const TransactionType = isMember === true && "Cash In"
+    const TransactionType = isMember || isAdmin === false && "Send Money" 
     const Type = TransactionType
   
     
@@ -74,7 +77,7 @@ const AgentSendMoney = () => {
       axiosPublic.get(`/usersNumber/${Account}`).then((res) => {
         const number = parseInt(Amounts) + parseInt(res.data.Amount);
         const Amount = number.toString();
-        
+
         const updateData = { Amount };
 
         axios.put(`/usersNumber/${Account}`, updateData).then((res) => {
@@ -174,7 +177,7 @@ const AgentSendMoney = () => {
               />
 
               <button className="btn bg-transparent text-violet-950 hover:bg-transparent hover:border-violet-950 rounded-2xl border-violet-950 mt-5 border">
-                Cash In
+                Send Money
               </button>
             </div>
           </div>
@@ -262,4 +265,4 @@ const AgentSendMoney = () => {
   );
 };
 
-export default AgentSendMoney;
+export default UserSendMoney;

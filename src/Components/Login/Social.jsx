@@ -19,6 +19,7 @@ const Social = () => {
         Name: users?.displayName,
         Email: users?.email,
         Role: "user",
+        Amount: "0",
       };
 
       // Send userData to the server

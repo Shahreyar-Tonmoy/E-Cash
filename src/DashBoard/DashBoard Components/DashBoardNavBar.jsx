@@ -88,7 +88,7 @@ const DashBoardNavBar = () => {
                     <img
                       src={user?.photoURL}
                       alt
-                      className=" m-auto rounded-full object-cover lg:w-20 lg:h-28"
+                      className=" m-auto rounded-full object-cover  w-20 h-28"
                     />
                     <h5 className=" text-black mt-4 text-xl font-semibold lg:block">
                       {user?.displayName}
@@ -113,21 +113,21 @@ const DashBoardNavBar = () => {
                     {isAdmin && (
                       <>
                         <li className="mt-3">
-                          <NavLink
-                            to="/dashBoard"
-                            className={({ isActive, isPending }) =>
-                              isPending
-                                ? "pending"
-                                : isActive
-                                ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
-                                : "relative px-4 py-3 flex items-center space-x-4 "
-                            }
-                          >
-                            <span className="flex items-center gap-3 justify-center mx-auto">
-                              DashBoard
-                            </span>
-                          </NavLink>
-                        </li>
+                  <NavLink
+                    to="/dashBoard"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                      DashBoard
+                    </span>
+                  </NavLink>
+                </li>
 
                         <li className="mt-3">
                           <NavLink
@@ -151,25 +151,25 @@ const DashBoardNavBar = () => {
                     {/* Agent section */}
 
                     {isMember && (
-                      <>
-                        <li className="mt-3">
-                          <NavLink
-                            to="/dashBoard"
-                            className={({ isActive, isPending }) =>
-                              isPending
-                                ? "pending"
-                                : isActive
-                                ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
-                                : "relative px-4 py-3 flex items-center space-x-4 "
-                            }
-                          >
-                            <span className="flex items-center gap-3 justify-center mx-auto">
-                              DashBoard
-                            </span>
-                          </NavLink>
-                        </li>
+              <>
+                <li className="mt-3">
+                  <NavLink
+                    to="/dashBoard"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                      DashBoard
+                    </span>
+                  </NavLink>
+                </li>
 
-                        <li className="mt-3">
+                <li className="mt-3">
                   <NavLink
                     to="/dashboard/agent/sendMoney"
                     className={({ isActive, isPending }) =>
@@ -181,54 +181,126 @@ const DashBoardNavBar = () => {
                     }
                   >
                     <span className="flex items-center gap-3 justify-center mx-auto">
-                      Send Money
+                    Cash In
                     </span>
                   </NavLink>
                 </li>
-                      </>
-                    )}
+
+
+                <li className="mt-3">
+                  <NavLink
+                    to="/dashboard/profile"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                      Profile
+                    </span>
+                  </NavLink>
+                </li>
+
+
+                <li className="mt-3">
+                  <NavLink
+                    to="/dashboard/agent/transaction"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                    Transactions
+                    </span>
+                  </NavLink>
+                </li>
+
+
+              </>
+            )}
 
                     {/* user section */}
 
                     {isAdmin ||
-                      isMember === false && 
-                        <>
-                          <li className="mt-3">
-                            <NavLink
-                              to="/dashBoard"
-                              className={({ isActive, isPending }) =>
-                                isPending
-                                  ? "pending"
-                                  : isActive
-                                  ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
-                                  : "relative px-4 py-3 flex items-center space-x-4 "
-                              }
-                            >
-                              <span className="flex items-center gap-3 justify-center mx-auto">
-                                DashBoard
-                              </span>
-                            </NavLink>
-                          </li>
+              (isMember === false && (
+                <>
+                  <li className="mt-3">
+                  <NavLink
+                    to="/dashBoard"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                      DashBoard
+                    </span>
+                  </NavLink>
+                </li>
 
-
-                          <li className="mt-3">
-                            <NavLink
-                              to="/dashBoard"
-                              className={({ isActive, isPending }) =>
-                                isPending
-                                  ? "pending"
-                                  : isActive
-                                  ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
-                                  : "relative px-4 py-3 flex items-center space-x-4 "
-                              }
-                            >
-                              <span className="flex items-center gap-3 justify-center mx-auto">
-                                user
-                              </span>
-                            </NavLink>
-                          </li>
-                        </>
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/sendMoney"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
                       }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                        Send Money
+                      </span>
+                    </NavLink>
+                  </li>
+
+
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/transaction"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                      Transactions
+                      </span>
+                    </NavLink>
+                  </li>
+
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/profile"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                      Profile
+                      </span>
+                    </NavLink>
+                  </li>
+                </>
+              ))}
 
 
                   </ul>

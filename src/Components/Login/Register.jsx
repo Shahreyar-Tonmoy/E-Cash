@@ -57,7 +57,8 @@ const Register = () => {
                             Name: name,
                             Email: email,
                             PhoneNumber:phoneNumber,
-                            Role: "user"
+                            Role: "user",
+                            Amount: "0"
                         }
                         
 
