@@ -1,53 +1,53 @@
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
-import AgentTransactionTable from "../Agent Home/AgentTransactionTable";
+
 import { useQuery } from "@tanstack/react-query";
+import UserTransectionTable from "./UserTransectionTable";
 
 const UserTransection = () => {
   const { user } = useContext(AuthContext);
-const [render,setRender] = useState()
+
 const axiosPublic = UseAxiosPublic()
 
-// useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const userResponse = await axiosPublic.get(`/users/${user.email}`);
-//         const agentTransactionResponse = await axiosPublic.get(`/get/users/transaction/${userResponse.data.PhoneNumber}`);
-//         setRender(agentTransactionResponse.data);
-//       } catch (error) {
-//         // Handle errors if necessary
-//         console.error('Error fetching data:', error);
-//       }
-//     };
-
-//     fetchData()
-
-//   }, [axiosPublic, user.email]);
-
-const { data: userData } = useQuery({
-    queryKey: ['user', user.email],
-    queryFn: () => axiosPublic.get(`/users/${user.email}`).then((res) => res.data),
-  });
+const {
+  data: userData,
+  isPending: isPendings,
+  isError: isErrors,
+} = useQuery({
+  queryKey: ["user", user.email],
+  queryFn: () =>
+    axiosPublic.get(`/users/${user.email}`).then((res) => res.data),
+});
 
 
-  const { data: agentTransactionData ,isPending, isError, error } = useQuery({
-    queryKey: ['agentTransaction', userData?.PhoneNumber],
-    queryFn: () => axiosPublic.get(`/get/users/transaction/${userData?.PhoneNumber}`).then((res) => res.data),
-    enabled: !!userData?.PhoneNumber,
-  });
+const {
+  data: agentTransactionData,
+  isPending,
+  isError,
+  error,
+} = useQuery({
+  queryKey: ["agentTransaction", userData?._id],
+  queryFn: () =>
+    axiosPublic
+      .get(`/get/users/transaction/${userData?._id}`)
+      .then((res) => res.data),
+  enabled: !!userData?._id,
+});
 
   const renderData = agentTransactionData && Array.isArray(agentTransactionData) ? agentTransactionData : [];
 
+  
 
 
-if (isPending) {
+
+  if (isPending || isPendings) {
     return <>loading....................</>;
   }
 
-  if (isError) {
-    return <span>Error: {error.message}</span>
+  if (isError || isErrors) {
+    return <span>Error: {error.message}</span>;
   }
 
 
@@ -69,7 +69,7 @@ if (isPending) {
           </thead>
           <tbody>
 
-            {renderData?.map(({_id, ...data}) => <AgentTransactionTable key={_id} data={data} />)}
+            {renderData?.map((data,index) => <UserTransectionTable From={userData.phoneNumber}  key={index} data={data} />)}
 
 
           </tbody>

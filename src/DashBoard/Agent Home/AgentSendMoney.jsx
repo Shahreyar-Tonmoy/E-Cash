@@ -30,7 +30,7 @@ const AgentSendMoney = () => {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server.vercel.app/users/${user?.email}`);
+      const res = await fetch(`http://localhost:5000/users/${user?.email}`);
       return res.json();
     },
   });
@@ -53,55 +53,68 @@ const AgentSendMoney = () => {
 
   const hendleSubmit = (e) => {
     e.preventDefault();
-    const Account = e.target.account.value;
-    const Amounts = e.target.amount.value;
-    const Date = TodaysDate;
-    const From = data?.PhoneNumber;
-    const FromRole = data?.Role;
-
-    const TransactionType = isMember === true && "Cash In"
-    const Type = TransactionType
-  
+    const account = e.target.account.value;
+    const amounts = e.target.amount.value;
     
+    const from = data?._id;
+    const From = data?.phoneNumber;
+
+    const fromRole = data?.role;
+    
+    const TransactionType = isMember === true && "Cash In"
+    const type = TransactionType
+  
+  
 
 
-    if (data?.PhoneNumber == Account) {
+    if (data?.phoneNumber == account) {
       swal("Oops!", "You can't send money in your own account!", "error");
-    } else if (parseInt(data?.Amount) <= parseInt(Amounts)) {
-      console.log(data?.Amount <= 0 || data?.Amount <= Amounts);
+    } else if (data?.amount <= parseInt(amounts)) {
+      console.log(data?.amount <= 0 || data?.Amount <= amounts);
       swal("Oops!", "you don't have sufficient balance!", "error");
-    } else {
-      axiosPublic.get(`/usersNumber/${Account}`).then((res) => {
-        const number = parseInt(Amounts) + parseInt(res.data.Amount);
+    } 
+
+    
+    else {
+      axiosPublic.get(`/usersNumber/${account}`).then((res) => {
+        const number = parseInt(amounts)+ res.data.amount;
         const Amount = number.toString();
+        const to  = res.data._id
         
         const updateData = { Amount };
 
-        axios.put(`/usersNumber/${Account}`, updateData).then((res) => {
-          // console.log(res.data);
+  
 
+        axiosPublic.put(`/usersNumber/${account}`, updateData).then((res) => {
+          // console.log(res.data);
+        
           if (res.data.modifiedCount > 0) {
-            const dataAma = parseInt(data?.Amount) - parseInt(Amounts);
-            const myAmount = dataAma.toString();
+            const dataAma = data?.amount - parseInt(amounts);
+            const myAmount = dataAma;
+            console.log(myAmount);
             const updatemyAmount = { myAmount };
-            axios.put(`/myAmount/${From}`, updatemyAmount).then((res) => {
+            axiosPublic.put(`/myAmount/${From}`, updatemyAmount).then((res) => {
+              
+              
+
               if (res.data.modifiedCount > 0) {
-                const TransactionId = uuidv4().split("-", 1)[0];
-                const To = Account;
-                const Email = data.Email
+                const transactionId = uuidv4().split("-", 1)[0];
                 
-                const TransactionData = {
-                  From,
-                  Amounts,
-                  To,
-                  Date,
-                  TransactionId,
-                  FromRole,
-                  Email,
-                  Type
+               
+                
+                const transactionData = {
+                  from,
+                  amounts,
+                  to,
+                  transactionId,
+                  fromRole,
+                  type
                 };
 
-                axios.post("/transaction", TransactionData).then((res) => {
+
+                console.log(transactionData);
+
+                axiosPublic.post("/transaction", transactionData).then((res) => {
                   if (res.data) {
                     e.target.reset();
                     swal(
@@ -124,7 +137,7 @@ const AgentSendMoney = () => {
         if(err.response.status === 404){
           swal(
             "Oops!",
-            "Invalid Account Number!",
+            "Invalid account Number!",
             "error"
           );
         }
@@ -135,7 +148,7 @@ const AgentSendMoney = () => {
   return (
     <div>
       {
-        data?.PhoneNumber ? <main className="flex  flex-col items-center justify-between p-6 lg:pt-40">
+        data?.phoneNumber ? <main className="flex  flex-col items-center justify-between p-6 lg:pt-40">
         <form
           onSubmit={hendleSubmit}
           className="bg-white w-full max-w-3xl mx-auto px-4 lg:px-6 py-8 shadow-md rounded-md flex flex-col lg:flex-row"
@@ -143,7 +156,7 @@ const AgentSendMoney = () => {
           <div className="w-full lg:w-1/2 lg:pr-8 lg:border-r-2 lg:border-slate-300">
             <div className="mb-4">
               <label className="text-neutral-800 font-bold text-sm mb-2 block">
-                Account number
+                account number
               </label>
               <input
                 name="account"
@@ -154,7 +167,7 @@ const AgentSendMoney = () => {
                 className="flex h-10 w-full rounded-md border-2 bg-background px-4 py-1.5 text-lg ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-purple-600 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 undefined"
                 maxLength={19}
                 placeholder="XXX XXXX XXXX"
-                defaultValue="4256 4256 4256 4256"
+                
               />
             </div>
 
@@ -222,7 +235,7 @@ const AgentSendMoney = () => {
                       </svg>
                     </div>
                     <div className="pt-1">
-                      <p className="font-light">Account Number</p>
+                      <p className="font-light">account Number</p>
                       <p
                         id="imageCardNumber"
                         className="font-medium tracking-more-wider h-6"

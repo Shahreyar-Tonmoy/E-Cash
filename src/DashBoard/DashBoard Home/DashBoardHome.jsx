@@ -9,6 +9,8 @@ const DashBoardHome = () => {
   const [isAdmin] = UserAdmin();
   const [isMember] = UserMember();
 
+  console.log(isAdmin , isMember);
+
   return (
     <div>
       {isAdmin && <AdminHome></AdminHome>}

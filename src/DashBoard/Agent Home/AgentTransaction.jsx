@@ -1,5 +1,4 @@
-
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import AgentTransactionTable from "./AgentTransactionTable";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
@@ -8,33 +7,45 @@ import { useQuery } from "@tanstack/react-query";
 const AgentTransaction = () => {
   const { user } = useContext(AuthContext);
 
-const axiosPublic = UseAxiosPublic()
+  const axiosPublic = UseAxiosPublic();
 
-const { data: userData } = useQuery({
-  queryKey: ['user', user.email],
-  queryFn: () => axiosPublic.get(`/users/${user.email}`).then((res) => res.data),
-});
-
-
-const { data: agentTransactionData ,isPending, isError, error } = useQuery({
-  queryKey: ['agentTransaction', userData?.PhoneNumber],
-  queryFn: () => axiosPublic.get(`/get/agent/transaction/${userData?.PhoneNumber}`).then((res) => res.data),
-  enabled: !!userData?.PhoneNumber,
-});
-
-const renderData = agentTransactionData && Array.isArray(agentTransactionData) ? agentTransactionData : [];
+  const {
+    data: userData,
+    isPending: isPendings,
+    isError: isErrors,
+  } = useQuery({
+    queryKey: ["user", user.email],
+    queryFn: () =>
+      axiosPublic.get(`/users/${user.email}`).then((res) => res.data),
+  });
 
 
+  const {
+    data: agentTransactionData,
+    isPending,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["agentTransaction", userData?._id],
+    queryFn: () =>
+      axiosPublic
+        .get(`/get/agent/transaction/${userData?._id}`)
+        .then((res) => res.data),
+    enabled: !!userData?._id,
+  });
 
-if (isPending) {
-  return <>loading....................</>;
-}
+  const renderData =
+    agentTransactionData && Array.isArray(agentTransactionData)
+      ? agentTransactionData
+      : [];
 
-if (isError) {
-  return <span>Error: {error.message}</span>
-}
+  if (isPending || isPendings) {
+    return <>loading....................</>;
+  }
 
-
+  if (isError || isErrors) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <div>
@@ -52,14 +63,17 @@ if (isError) {
             </tr>
           </thead>
           <tbody>
-
-            {renderData?.map(({_id, ...data}) => <AgentTransactionTable key={_id} data={data} />)}
-
-
+            {renderData?.map((data, index) => (
+              <AgentTransactionTable
+              
+                From={userData?.phoneNumber}
+                key={index}
+                data={data}
+              />
+            ))}
           </tbody>
         </table>
       </div>
-      
     </div>
   );
 };

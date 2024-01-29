@@ -5,7 +5,8 @@ import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { reload } from "firebase/auth";
+
+import Swal from "sweetalert2";
 
 const ProfileUpdate = () => {
   const { updateUserInfo , user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const ProfileUpdate = () => {
   const { isPending, isError, error, data:datas, refetch } = useQuery({
     queryKey: ["data","user"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server.vercel.app/users/${user.email}`);
+      const res = await fetch(`http://localhost:5000/users/${user.email}`);
       return res.json();
     },
   });
@@ -35,7 +36,6 @@ const ProfileUpdate = () => {
 
 
 
-
   const onSubmit = async (data) => {
 
     if(data?.image[0]){
@@ -49,30 +49,36 @@ const ProfileUpdate = () => {
   
       if (res.data.success) {
         
-        const  Name= data?.name
+        const  name= data?.name
   
-        const  PhoneNumber= data?.phoneNo
-        const  DateOfBirth= data?.dateOfBirth
-        const  Image= res?.data?.data?.display_url
+        const  phoneNumber= data?.phoneNo
+        const  dateOfBirth= data?.dateOfBirth
+        const  image= res?.data?.data?.display_url
         
   
         
   
         updateUserInfo({
-          displayName: Name,
-          photoURL: Image
+          displayName: name,
+          photoURL: image
         }).then(() => {
   
           const updateData= {
-            Name, PhoneNumber, DateOfBirth, Image
+            name, phoneNumber, dateOfBirth, image
           }
   
           axiosPublic.put(`/users/update/${user.email}`,updateData)
           .then((res)=>{
             
             if(res.data){
-              refetch()
-              reload()
+              if(res.data){
+                Swal.fire({
+                  icon: "success",
+                  title: res.data.message,
+                  
+                })
+              }
+              
             }
           })
         });
@@ -84,27 +90,35 @@ const ProfileUpdate = () => {
     
 
     else{
-      const  Name= data?.name
+      const  name= data?.name
 
-      const  PhoneNumber= data?.phoneNo
-      const  DateOfBirth= data?.dateOfBirth
+      const  phoneNumber= data?.phoneNo
+      const  dateOfBirth= data?.dateOfBirth
      
       
 
       
 
       updateUserInfo({
-        displayName: Name,
-        phoneNumber: PhoneNumber
+        displayName: name,
+        phoneNumber: phoneNumber
         
       }).then(() => {
 
         const updateData= {
-          Name, PhoneNumber, DateOfBirth
+          name, phoneNumber, dateOfBirth
         }
 
         axiosPublic.put(`/users/update/${user.email}`,updateData)
         .then((res)=>{
+
+          if(res.data){
+            Swal.fire({
+              icon: "success",
+              title: res.data.message,
+              
+            })
+          }
           
           if(res.data){
             refetch()
@@ -174,7 +188,7 @@ const ProfileUpdate = () => {
                         {...register("phoneNo")}
                         type="number"
                         
-                        defaultValue={datas?.PhoneNumber}
+                        defaultValue={datas?.phoneNumber}
                         className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your Phone Number"
                       />
@@ -188,7 +202,7 @@ const ProfileUpdate = () => {
                       <input
                         {...register("dateOfBirth")}
                         type="date"
-                        defaultValue={datas?.DateOfBirth}
+                        defaultValue={datas?.dateOfBirth}
                         className=" border  text-black text-sm   focus:border-blue-500 block w-full ps-10 p-2.5     border-b-2 focus:border-transparent focus:border-b border-gray-300 focus:outline-none border-t-transparent border-l-transparent border-r-transparent rounded-none "
                         placeholder="Select date"
                       />
