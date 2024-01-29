@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
 
 import UseAxios from "./UseAxios";
@@ -12,9 +13,9 @@ const UserMember = () => {
         queryKey: [user?.email, "isMember"],
         enabled: !!user?.email && !!localStorage.getItem("access-token"),
         queryFn: async()=>{
-            const res = await axiosSecure.get(`/user/member/${user?.email}`)
-            // console.log(res.data);
-            return res.data?.Member
+            const res = await axiosSecure.get(`/user/agent/${user?.email}`)
+            
+            return res?.data?.agent
         }
 
     })

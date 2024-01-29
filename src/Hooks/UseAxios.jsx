@@ -8,7 +8,7 @@ import { AuthContext } from "../Components/Login/Firebase/AuthProvider";
 
 
 export const axiosSecure = axios.create({
-    baseURL: "https://e-cash-server.vercel.app"
+    baseURL: "http://localhost:5000"
     
 })
 
@@ -36,7 +36,7 @@ const UseAxios = () => {
         console.log("status error", status)
         if(status === 401 || status === 403){
             logOut().then(()=>{
-                navigate('/login')
+                navigate('/signIn')
             })
            
            

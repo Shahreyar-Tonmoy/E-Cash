@@ -11,6 +11,13 @@ import Register from "../Components/Login/Register";
 import DashBoardLayOut from "../DashBoard/DashBoard LayOut/DashBoardLayOut";
 import PrivateRoute from "../Components/Login/PrivateRoute";
 import CurrencyCalculator from "../Components/Currency Calculator/CurrencyCalculator";
+import DashBoardHome from "../DashBoard/DashBoard Home/DashBoardHome";
+import AgentSendMoney from "../DashBoard/Agent Home/AgentSendMoney";
+import ProfileUpdate from "../DashBoard/Profile Update/profileUpdate";
+import AgentTransaction from "../DashBoard/Agent Home/AgentTransaction";
+import UserSendMoney from "../DashBoard/User Home/UserSendMoney";
+import TabRoute from "../DashBoard/Tabs/TabRoute";
+
 
 const Router = createBrowserRouter([
   {
@@ -49,13 +56,35 @@ const Router = createBrowserRouter([
     element : <PrivateRoute><DashBoardLayOut></DashBoardLayOut></PrivateRoute>,
     children : [
 
-        // admin
+      
+        {
+            path : "/dashboard",
+            element: <PrivateRoute><DashBoardHome></DashBoardHome></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/agent/sendMoney",
+            element: <PrivateRoute><AgentSendMoney></AgentSendMoney></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/profile",
+            element: <PrivateRoute><ProfileUpdate></ProfileUpdate></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/agent/transaction",
+            element: <PrivateRoute><TabRoute></TabRoute></PrivateRoute>,
+        },
 
+        // user
 
-        // {
-        //     path : "/dashboard/adminProfile",
-        //     element: <UserProfile></UserProfile>,
-        // },
+        {
+          path : "/dashboard/user/sendMoney",
+          element: <PrivateRoute><UserSendMoney></UserSendMoney></PrivateRoute>,
+      },
+      {
+        path : "/dashboard/user/transaction",
+        element: <PrivateRoute><TabRoute></TabRoute></PrivateRoute>,
+    },
+    
         
 
     ]

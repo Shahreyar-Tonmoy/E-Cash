@@ -11,6 +11,7 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   updateProfile,
+  FacebookAuthProvider
 } from "firebase/auth";
 import app from "./Firebase.init";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
@@ -19,6 +20,7 @@ export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const axiosPublic = UseAxiosPublic()
 const googleProvider = new GoogleAuthProvider();
+const FbProvider = new FacebookAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -40,6 +42,10 @@ const AuthProvider = ({ children }) => {
   const SignInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
+  };
+  const SignInWithFb = () => {
+    setLoading(true);
+    return signInWithPopup(auth, FbProvider);
   };
   const logOut = () => {
     setLoading(true);
@@ -90,6 +96,7 @@ const AuthProvider = ({ children }) => {
     signInUser,
     logOut,
     updateUserInfo,
+    SignInWithFb
   };
   // console.log(user);
 
