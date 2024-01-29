@@ -54,10 +54,10 @@ const Register = () => {
                     })
                     .then(()=>{
                         const userInfo ={
-                            Name: name,
-                            Email: email,
-                            PhoneNumber:phoneNumber,
-                            Role: "user"
+                            name: name,
+                            email: email,
+                            phoneNumber:phoneNumber,
+                          
                         }
                         
 

@@ -16,13 +16,20 @@ const Social = () => {
       const users = result.user;
 
       const userData = {
-        Name: users?.displayName,
-        Email: users?.email,
-        Role: "user",
+        name: users?.displayName,
+        email: users?.email,
+       
+        
+        
       };
 
+
       // Send userData to the server
-      await axiosPublic.post("/users", userData);
+      axiosPublic.post("/users", userData)
+      .then((res)=>{
+        console.log(res.data)
+      })
+
 
       // Show success message
       swal("Success", "You have successfully logged in!", "success");
