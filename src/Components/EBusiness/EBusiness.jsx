@@ -36,7 +36,7 @@ const EBusiness = () => {
 
   return (
     <div className="max-w-screen-lg mx-auto px-5">
-      <EBusinessCard image={image1} title={title1} details={details1} link={link1} linkName={linkName1}></EBusinessCard>
+      
       <EBusinessCard2 image={image2} title={title2} details={details2} link={link2} linkName={linkName2}></EBusinessCard2>
       <EBusinessCard image={image3} title={title3} details={details3} link={link3} linkName={linkName3}></EBusinessCard>
       <EBusinessCard2 image={image4} title={title4} details={details4} link={link4} linkName={linkName4}></EBusinessCard2>
