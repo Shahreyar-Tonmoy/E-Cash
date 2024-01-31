@@ -58,7 +58,7 @@ const CurrencyCalculator = () => {
 
           <figure className=" flex-1">
             <div>
-              <div className="relative flex flex-col mb-10 mt-5 py-5 border-2  text-gray-700  lg:w-96 w-72  rounded-xl bg-clip-border">
+              <div className="relative mx-auto flex flex-col mb-10 mt-5 py-5 border-2  text-gray-700  lg:w-96 w-72  rounded-xl bg-clip-border">
                 <div className="relative grid mx-3 lg:mx-6 mb-4  overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-r from-[#B46EA3] to-[#6F74BE] bg-clip-border shadow-gray-900/20">
                   <h3 className="block font-sans text-lg lg:text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
                     Currency Calculator

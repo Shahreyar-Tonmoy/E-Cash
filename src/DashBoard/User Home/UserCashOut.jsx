@@ -27,7 +27,7 @@ const UserCashOut = () => {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.onrender.com/users/${user?.email}`);
       return res.json();
     },
   });
@@ -196,10 +196,10 @@ const UserCashOut = () => {
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     <img
-                      src="https://i.ibb.co/LPLv5MD/Payment-Card-01.jpg"
+                      src="https://i.ibb.co/dfn7M7G/Purple-Creative-We-re-Digital-Marketing-Expert-Banner-1.png"
                       className="relative object-cover w-full h-full rounded-xl"
                     />
-                    <div className="w-full px-8 absolute top-8">
+                    <div className="w-full px-8 absolute  top-8">
                       <div className="text-right">
                         <svg
                           className="w-14 h-14 ml-auto"
@@ -227,8 +227,17 @@ const UserCashOut = () => {
                           />
                         </svg>
                       </div>
-                      <div className="pt-1">
-                        <p className="font-light">Account Number</p>
+                      <div className="-mt-8">
+                        <p className="font-semibold text-violet-900">Your Account Number</p>
+                        <p
+                          id="imageCardNumber"
+                          className="font-medium tracking-more-wider h-6"
+                        >
+                          {data?.phoneNumber}
+                        </p>
+                      </div>
+                      <div className=" pt-1">
+                        <p className="font-semibold text-violet-900">Cash Out Number</p>
                         <p
                           id="imageCardNumber"
                           className="font-medium tracking-more-wider h-6"
@@ -236,9 +245,9 @@ const UserCashOut = () => {
                           {inputValue}
                         </p>
                       </div>
-                      <div className="pt-6 flex justify-between">
+                      <div className=" flex justify-between pt-1">
                         <div>
-                          <p className="font-light">Ammount</p>
+                          <p className="font-semibold text-violet-900">Ammount</p>
                           <p
                             id="imageCardName"
                             className="font-medium tracking-widest h-6"

@@ -8,7 +8,7 @@ import { AuthContext } from "../Components/Login/Firebase/AuthProvider";
 
 
 export const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: "https://e-cash-server-mongoose.onrender.com"
     
 })
 

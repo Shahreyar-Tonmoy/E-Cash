@@ -88,7 +88,7 @@ const DashBoardNavBar = () => {
                     <img
                       src={user?.photoURL}
                       alt
-                      className=" m-auto rounded-full object-cover  w-20 h-28"
+                      className=" m-auto rounded-full object-cover  w-20 h-20"
                     />
                     <h5 className=" text-black mt-4 text-xl font-semibold lg:block">
                       {user?.displayName}
@@ -261,6 +261,24 @@ const DashBoardNavBar = () => {
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
                         Send Money
+                      </span>
+                    </NavLink>
+                  </li>
+
+
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/cashOut"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                        Cash Out
                       </span>
                     </NavLink>
                   </li>
