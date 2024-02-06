@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
@@ -5,8 +6,16 @@ import UserAdmin from "../../Hooks/UserAdmin";
 import UserMember from "../../Hooks/UseMember";
 import { RxCrossCircled } from "react-icons/rx";
 import { FaHome } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
 const DashBoardNavBar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const { isPending, isError, error, data } = useQuery({
+    queryKey: ["data", "user"],
+    queryFn: async () => {
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
+      return res.json();
+    },
+  });
   const Navigate = useNavigate();
   const hendleSignOut = () => {
     logOut()
@@ -62,7 +71,7 @@ const DashBoardNavBar = () => {
                   className="drawer-overlay"
                 ></label>
 
-                <ul className=" p-4 w-72 min-h-full bg-white text-base-content">
+                <ul className=" p-4 w-60 min-h-full bg-white text-base-content">
                   {/* logo section */}
                   <div className="px-3 flex justify-between items-center ">
                     {/* <a href="#" title="home">
@@ -88,20 +97,35 @@ const DashBoardNavBar = () => {
                     <img
                       src={user?.photoURL}
                       alt
-                      className=" m-auto rounded-full object-cover  w-20 h-28"
+                      className=" m-auto rounded-full object-cover  w-20 h-20"
                     />
                     <h5 className=" text-black mt-4 text-xl font-semibold lg:block">
                       {user?.displayName}
                     </h5>
                     {isAdmin && (
-                      <span className=" text-black lg:block">Admin</span>
+                      <div className="flex flex-col">
+                      <span className=" text-gray-400 ">Admin</span>
+                      <span className=" text-gray-400">
+                        Account Number: <span>{data?.phoneNumber}</span>
+                      </span>
+                    </div>
                     )}
                     {isMember && (
-                      <span className=" text-black lg:block">Agent</span>
+                     <div className="flex flex-col">
+                     <span className=" text-gray-400 ">Agent</span>
+                     <span className=" text-gray-400 ">
+                       Account Number: <span>{data?.phoneNumber}</span>
+                     </span>
+                   </div>
                     )}
                     {isAdmin ||
                       (isMember === false && (
-                        <span className=" text-black lg:block">User</span>
+                        <div className="flex flex-col">
+                  <span className=" text-gray-400 ">User</span>
+                  <span className=" text-gray-400 ">
+                    Account Number: <span>{data?.phoneNumber}</span>
+                  </span>
+                </div>
                       ))}
                   </div>
 
@@ -261,6 +285,24 @@ const DashBoardNavBar = () => {
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
                         Send Money
+                      </span>
+                    </NavLink>
+                  </li>
+
+
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/cashOut"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                        Cash Out
                       </span>
                     </NavLink>
                   </li>

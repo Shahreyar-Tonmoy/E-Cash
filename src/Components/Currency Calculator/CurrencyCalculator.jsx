@@ -44,109 +44,100 @@ const CurrencyCalculator = () => {
 
   return (
     <div>
-    
-    <div className="hero min-h-screen" style={{backgroundImage: 'url(https://i.ibb.co/xDWqkSx/Purple-Creative-We-re-Digital-Marketing-Expert-Banner-1.png)'}}>
-  <div className="hero-overlay bg-opacity-20"></div>
-    <div className="hero min-h-screen ">
-  <div className="hero-content text-white flex-col  py-16 lg:py-0 justify-between lg:flex-row">
-    <div className="text-center  lg:mx-40 lg:text-left">
-      <h1 className="lg:text-5xl text-3xl mx-10 lg:mx-0 leading-normal font-Ubuntu font-bold">You Can Calculate <span className="text-violet-900">Your Currency</span></h1>
-      <p className="py-6 leading-7 font-Kanit text-sm">Certainly, I can provide information about various currencies. Could you please specify which currency you are interested in?</p>
-    </div>
-    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-    <div className="flex justify-center items-center">
-      <div>
-        <div className="relative flex flex-col mb-10 mt-5 text-gray-700 bg-white lg:w-96 w-72  rounded-xl bg-clip-border">
-          <div className="relative grid mx-3 lg:mx-6 mb-4  overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-r from-[#B46EA3] to-[#6F74BE] bg-clip-border shadow-gray-900/20">
-            <h3 className="block font-sans text-lg lg:text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
-              Currency Calculator
-            </h3>
+      <div className="max-w-screen-lg mx-auto px-5">
+        <div className=" lg:flex flex-row-reverse mt-40  rounded-none ">
+          <div className="card-body flex-1">
+            <h2 className="text-3xl font-WorkSans font-semibold">
+            Currency Calculator
+            </h2>
+            <h2 className="text-xl font-WorkSans font-semibold">Instantly Calculate Exchange Rates with Precision</h2>
+            <p className="text-lg">
+            Streamline your currency conversions effortlessly with our intuitive calculator. Access up-to-date exchange rates for diverse currencies, ensuring accuracy in every transaction. Whether for travel, business, or personal finance, our tool simplifies the process, making it easy to stay informed and make informed decisions.
+            </p>
           </div>
-          <div className="flex flex-col gap-4 py-6 px-3 lg:py-6 lg:px-6 lg:p-6">
-            {/* Amaount section */}
 
-            <div className="relative h-11 w-full min-w-[200px]">
-              <input
-                type="number"
-                value={amount}
-                onChange={handleAmountChange}
-                className="w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-violet-900  text-violet-900 outline outline-0 placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200  focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                placeholder=" "
-              />
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-violet-900 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-violet-900 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-violet-900 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-violet-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-violet-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-violet-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                Amount
-              </label>
-            </div>
+          <figure className=" flex-1">
+            <div>
+              <div className="relative mx-auto flex flex-col mb-10 mt-5 py-5 border-2  text-gray-700  lg:w-96 w-72  rounded-xl bg-clip-border">
+                <div className="relative grid mx-3 lg:mx-6 mb-4  overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-r from-[#B46EA3] to-[#6F74BE] bg-clip-border shadow-gray-900/20">
+                  <h3 className="block font-sans text-lg lg:text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
+                    Currency Calculator
+                  </h3>
+                </div>
+                <div className="flex flex-col  gap-4 py-6 px-3 lg:py-6 lg:px-6 lg:p-6">
+                  {/* Amaount section */}
 
-            {/* From currency */}
+                  <div className="relative h-11 w-full min-w-[200px]">
+                    <input
+                      type="number"
+                      value={amount}
+                      onChange={handleAmountChange}
+                      className="w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-violet-900  text-violet-900 outline outline-0 placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200  focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                      placeholder=" "
+                    />
+                    <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-violet-900 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-violet-900 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-violet-900 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-violet-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-violet-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-violet-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                      Amount
+                    </label>
+                  </div>
 
-            <div className="relative h-10  min-w-[200px]">
-              <select
-                value={fromCurrency}
-                onChange={handleFromCurrencyChange}
-                className="peer h-full w-full rounded-[7px] border border-violet-900 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-violet-900 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              >
-                {exchangeRates &&
-                  Object.keys(exchangeRates).map((currency) => (
-                    <option key={currency} value={currency}>
-                      {currency}
-                    </option>
-                  ))}
-              </select>
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-violet-900 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-violet-900 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-violet-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-violet-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-violet-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                From
-              </label>
-            </div>
+                  {/* From currency */}
 
-            <h1 className="text-center text-xl font-semibold">To</h1>
+                  <div className="relative h-10  min-w-[200px]">
+                    <select
+                      value={fromCurrency}
+                      onChange={handleFromCurrencyChange}
+                      className="peer h-full w-full rounded-[7px] border border-violet-900 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-violet-900 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    >
+                      {exchangeRates &&
+                        Object.keys(exchangeRates).map((currency) => (
+                          <option key={currency} value={currency}>
+                            {currency}
+                          </option>
+                        ))}
+                    </select>
+                    <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-violet-900 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-violet-900 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-violet-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-violet-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-violet-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                      From
+                    </label>
+                  </div>
 
-            {/* To currency */}
+                  <h1 className="text-center text-xl font-semibold">To</h1>
 
-            <div className="relative h-10  min-w-[200px]">
-              <select
-                value={toCurrency}
-                 onChange={handleToCurrencyChange}
-                className="peer h-full w-full rounded-[7px] border border-violet-900 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-violet-900 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              >
-                {exchangeRates &&
-                  Object.keys(exchangeRates).map((currency) => (
-                    <option key={currency} value={currency}>
-                      {currency}
-                    </option>
-                  ))}
-              </select>
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-violet-900 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-violet-900 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-violet-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-violet-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-violet-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                To
-              </label>
-            </div>
+                  {/* To currency */}
 
-            {/* Current Amaount */}
+                  <div className="relative h-10  min-w-[200px]">
+                    <select
+                      value={toCurrency}
+                      onChange={handleToCurrencyChange}
+                      className="peer h-full w-full rounded-[7px] border border-violet-900 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-violet-900 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    >
+                      {exchangeRates &&
+                        Object.keys(exchangeRates).map((currency) => (
+                          <option key={currency} value={currency}>
+                            {currency}
+                          </option>
+                        ))}
+                    </select>
+                    <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-violet-900 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-violet-900 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-violet-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-violet-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-violet-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                      To
+                    </label>
+                  </div>
 
-            <div className="relative h-10  min-w-[200px]">
-              <div
-                
-                className="peer h-full w-full rounded-[7px] border border-violet-900 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-violet-900 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              >
-                {convertedAmount}
+                  {/* Current Amaount */}
+
+                  <div className="relative h-10  min-w-[200px]">
+                    <div className="peer h-full w-full rounded-[7px] border border-violet-900 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-violet-900 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                      {convertedAmount}
+                    </div>
+                    <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-violet-900 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-violet-900 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-violet-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-violet-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-violet-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                      Converted Amount
+                    </label>
+                  </div>
+                </div>
               </div>
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-violet-900 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-violet-900 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-violet-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-violet-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-violet-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-              Converted Amount
-              </label>
             </div>
-
-
-          </div>
+          </figure>
         </div>
       </div>
-
-      
-    </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
     </div>
   );
 };

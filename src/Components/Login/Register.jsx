@@ -61,7 +61,7 @@ const Register = () => {
                         }
                         
 
-                        axiosPublic.post("/users",userInfo)
+                        axiosPublic.post("/add/users",userInfo)
                         .then(res =>{
                            
                             if(res.data.insertedId){
@@ -69,7 +69,7 @@ const Register = () => {
                         
 
                         e.target.reset()
-                        navigate(location?.state ? location?.state : "/")
+                        navigate(location?.state ? location?.state : "/dashboard")
 
                             }
                             else{

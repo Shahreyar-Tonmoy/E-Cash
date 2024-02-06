@@ -14,9 +14,10 @@ import CurrencyCalculator from "../Components/Currency Calculator/CurrencyCalcul
 import DashBoardHome from "../DashBoard/DashBoard Home/DashBoardHome";
 import AgentSendMoney from "../DashBoard/Agent Home/AgentSendMoney";
 import ProfileUpdate from "../DashBoard/Profile Update/profileUpdate";
-import AgentTransaction from "../DashBoard/Agent Home/AgentTransaction";
+
 import UserSendMoney from "../DashBoard/User Home/UserSendMoney";
 import TabRoute from "../DashBoard/Tabs/TabRoute";
+import UserCashOut from "../DashBoard/User Home/UserCashOut";
 
 
 const Router = createBrowserRouter([
@@ -79,6 +80,10 @@ const Router = createBrowserRouter([
         {
           path : "/dashboard/user/sendMoney",
           element: <PrivateRoute><UserSendMoney></UserSendMoney></PrivateRoute>,
+      },
+        {
+          path : "/dashboard/user/cashOut",
+          element: <PrivateRoute><UserCashOut></UserCashOut></PrivateRoute>,
       },
       {
         path : "/dashboard/user/transaction",

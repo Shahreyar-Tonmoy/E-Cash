@@ -1,20 +1,18 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
-import dateTime from "date-time";
-
-import { useQuery } from "@tanstack/react-query";
-
 import swal from "sweetalert";
 import { v1 as uuidv4 } from "uuid";
-
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
-
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import { useNavigate } from "react-router-dom";
 import UserAdmin from "../../Hooks/UserAdmin";
 import UserMember from "../../Hooks/UseMember";
+import { useQuery } from "@tanstack/react-query";
 import ProfileUpdate from "../Profile Update/profileUpdate";
+import dateTime from "date-time";
+import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 
-const UserSendMoney = () => {
+const UserCashOut = () => {
   const { user } = useContext(AuthContext);
 
   const axiosPublic = UseAxiosPublic();
@@ -54,38 +52,48 @@ const UserSendMoney = () => {
     e.preventDefault();
     const account = e.target.account.value;
     const amounts = e.target.amount.value;
-
+    const sum = parseInt(amounts);
     const from = data?._id;
     const From = data?.phoneNumber;
 
     const fromRole = data?.role;
 
-    const TransactionType = isMember || (isAdmin === false && "Send Money");
+    const TransactionType = isMember || (isAdmin === false && "Cash Out");
     const type = TransactionType;
 
     if (data?.phoneNumber == account) {
       swal("Oops!", "You can't send money in your own account!", "error");
-    } else if (data?.amount <= parseInt(amounts)) {
-      console.log(data?.amount <= 0 || data?.Amount <= amounts);
+    } else if (data?.amount < (sum + (sum * 14) / 1000) || data?.amount <= 0) {
+      // console.log(data?.amount <= 0 || data?.Amount <= amounts);
       swal("Oops!", "you don't have sufficient balance!", "error");
     } else {
       axiosPublic
-        .get(`/usersNumber/${account}`)
+        .get(`/agentNumber/${account}`)
         .then((res) => {
-          const number = parseInt(amounts) + res.data.amount;
-          const Amount = number.toString();
+          const numbers =
+            parseInt(amounts) +
+            res.data.amount +
+            (parseInt(amounts) * 4) / 1000;
+          const Amount = parseInt(numbers);
+
           const to = res.data._id;
 
           const updateData = { Amount };
 
+          console.log(numbers);
+
           axiosPublic.put(`/usersNumber/${account}`, updateData).then((res) => {
             // console.log(res.data);
-
             if (res.data.modifiedCount > 0) {
-              const dataAma = data?.amount - parseInt(amounts);
+             
+
+              const dataAma = data?.amount - (sum + (sum * 14) / 1000);
               const myAmount = dataAma;
-              console.log(myAmount);
+             
               const updatemyAmount = { myAmount };
+
+
+
               axiosPublic
                 .put(`/myAmount/${From}`, updatemyAmount)
                 .then((res) => {
@@ -101,21 +109,21 @@ const UserSendMoney = () => {
                       type,
                     };
 
-                    console.log(transactionData);
 
-                    axiosPublic
-                      .post("/transaction", transactionData)
-                      .then((res) => {
-                        if (res.data) {
-                          e.target.reset();
-                          swal(
-                            "Great!",
-                            "You Are Successfully Send Money!",
-                            "success"
-                          );
-                          Navigate("/dashBoard");
-                        }
-                      });
+
+                      axiosPublic
+                        .post("/transaction", transactionData)
+                        .then((res) => {
+                          if (res.data) {
+                            e.target.reset();
+                            swal(
+                              "Great!",
+                              "You Are Successfully Send Money!",
+                              "success"
+                            );
+                            Navigate("/dashBoard");
+                          }
+                        });
                   }
                 });
             }
@@ -124,7 +132,7 @@ const UserSendMoney = () => {
         .catch((err) => {
           console.log(err.response.status);
           if (err.response.status === 404) {
-            swal("Oops!", "Invalid account Number!", "error");
+            swal("Oops!", "Invalid Agent Account Number!", "error");
           }
         });
     }
@@ -172,7 +180,7 @@ const UserSendMoney = () => {
                 />
 
                 <button className="btn bg-transparent text-violet-950 hover:bg-transparent hover:border-violet-950 rounded-2xl border-violet-950 mt-5 border">
-                  Send Money
+                  Cash Out
                 </button>
               </div>
             </div>
@@ -188,10 +196,10 @@ const UserSendMoney = () => {
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     <img
-                      src="https://i.ibb.co/LPLv5MD/Payment-Card-01.jpg"
+                      src="https://i.ibb.co/dfn7M7G/Purple-Creative-We-re-Digital-Marketing-Expert-Banner-1.png"
                       className="relative object-cover w-full h-full rounded-xl"
                     />
-                    <div className="w-full px-8 absolute top-8">
+                    <div className="w-full px-8 absolute  top-8">
                       <div className="text-right">
                         <svg
                           className="w-14 h-14 ml-auto"
@@ -219,8 +227,17 @@ const UserSendMoney = () => {
                           />
                         </svg>
                       </div>
-                      <div className="pt-1">
-                        <p className="font-light">Account Number</p>
+                      <div className="-mt-8">
+                        <p className="font-semibold text-violet-900">Your Account Number</p>
+                        <p
+                          id="imageCardNumber"
+                          className="font-medium tracking-more-wider h-6"
+                        >
+                          {data?.phoneNumber}
+                        </p>
+                      </div>
+                      <div className=" pt-1">
+                        <p className="font-semibold text-violet-900">Cash Out Number</p>
                         <p
                           id="imageCardNumber"
                           className="font-medium tracking-more-wider h-6"
@@ -228,9 +245,9 @@ const UserSendMoney = () => {
                           {inputValue}
                         </p>
                       </div>
-                      <div className="pt-6 flex justify-between">
+                      <div className=" flex justify-between pt-1">
                         <div>
-                          <p className="font-light">Ammount</p>
+                          <p className="font-semibold text-violet-900">Ammount</p>
                           <p
                             id="imageCardName"
                             className="font-medium tracking-widest h-6"
@@ -262,4 +279,4 @@ const UserSendMoney = () => {
   );
 };
 
-export default UserSendMoney;
+export default UserCashOut;

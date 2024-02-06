@@ -25,7 +25,7 @@ const Social = () => {
 
 
       // Send userData to the server
-      axiosPublic.post("/users", userData)
+      axiosPublic.post("/add/users", userData)
       .then((res)=>{
         console.log(res.data)
       })
@@ -35,7 +35,7 @@ const Social = () => {
       swal("Success", "You have successfully logged in!", "success");
 
       // Redirect to the previous page or homepage
-      navigate(location?.state ? location?.state : "/"  )
+      navigate(location?.state ? location?.state : "/dashboard"  )
       
     } catch (error) {
       // Show error message

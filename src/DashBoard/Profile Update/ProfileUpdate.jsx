@@ -19,7 +19,7 @@ const ProfileUpdate = () => {
   const { isPending, isError, error, data:datas, refetch } = useQuery({
     queryKey: ["data","user"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${user.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
       return res.json();
     },
   });
@@ -173,7 +173,7 @@ const ProfileUpdate = () => {
                         {...register("name")}
                         name="name"
                         type="text"
-                        value={user.displayName}
+                        
                         defaultValue={user.displayName}
                         className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your Name"
