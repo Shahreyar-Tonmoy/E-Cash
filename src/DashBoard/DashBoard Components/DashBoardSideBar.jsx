@@ -1,15 +1,29 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import UserMember from "../../Hooks/UseMember";
 import UserAdmin from "../../Hooks/UserAdmin";
 import { FaHome } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
 
 const DashBoardSideBar = () => {
   const [isAdmin] = UserAdmin();
   const [isMember] = UserMember();
+  console.log(isAdmin,isMember)
+
+
 
   const { user, logOut } = useContext(AuthContext);
+
+  const { isPending, isError, error, data } = useQuery({
+    queryKey: ["data", "user"],
+    queryFn: async () => {
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
+      return res.json();
+    },
+  });
+
   const Navigate = useNavigate();
   const hendleSignOut = () => {
     logOut()
@@ -48,14 +62,29 @@ const DashBoardSideBar = () => {
               {user?.displayName}
             </h5>
             {isAdmin && (
-              <span className="hidden text-gray-400 lg:block">Admin</span>
+              <div>
+                <span className="hidden text-gray-400 lg:block">Admin</span>
+                <span className="hidden text-gray-400 lg:block">
+                  Account Number: <span>{data?.phoneNumber}</span>
+                </span>
+              </div>
             )}
             {isMember && (
-              <span className="hidden text-gray-400 lg:block">Agent</span>
+              <div>
+                <span className="hidden text-gray-400 lg:block">Agent</span>
+                <span className="hidden text-gray-400 lg:block">
+                  Account Number: <span>{data?.phoneNumber}</span>
+                </span>
+              </div>
             )}
             {isAdmin ||
               (isMember === false && (
-                <span className="hidden text-gray-400 lg:block">User</span>
+                <div>
+                  <span className="hidden text-gray-400 lg:block">User</span>
+                  <span className="hidden text-gray-400 lg:block">
+                    Account Number: <span>{data?.phoneNumber}</span>
+                  </span>
+                </div>
               ))}
           </div>
 
@@ -63,7 +92,7 @@ const DashBoardSideBar = () => {
 
           <ul className="space-y-2 tracking-wide mt-8">
             {/* admin section */}
-            
+
             {isAdmin && (
               <>
                 <li className="mt-3">
@@ -135,11 +164,10 @@ const DashBoardSideBar = () => {
                     }
                   >
                     <span className="flex items-center gap-3 justify-center mx-auto">
-                    Cash In
+                      Cash In
                     </span>
                   </NavLink>
                 </li>
-
 
                 <li className="mt-3">
                   <NavLink
@@ -158,7 +186,6 @@ const DashBoardSideBar = () => {
                   </NavLink>
                 </li>
 
-
                 <li className="mt-3">
                   <NavLink
                     to="/dashboard/agent/transaction"
@@ -171,12 +198,10 @@ const DashBoardSideBar = () => {
                     }
                   >
                     <span className="flex items-center gap-3 justify-center mx-auto">
-                    Transactions
+                      Transactions
                     </span>
                   </NavLink>
                 </li>
-
-
               </>
             )}
 
@@ -186,21 +211,21 @@ const DashBoardSideBar = () => {
               (isMember === false && (
                 <>
                   <li className="mt-3">
-                  <NavLink
-                    to="/dashBoard"
-                    className={({ isActive, isPending }) =>
-                      isPending
-                        ? "pending"
-                        : isActive
-                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
-                        : "relative px-4 py-3 flex items-center space-x-4 "
-                    }
-                  >
-                    <span className="flex items-center gap-3 justify-center mx-auto">
-                      DashBoard
-                    </span>
-                  </NavLink>
-                </li>
+                    <NavLink
+                      to="/dashBoard"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                        DashBoard
+                      </span>
+                    </NavLink>
+                  </li>
 
                   <li className="mt-3">
                     <NavLink
@@ -219,7 +244,6 @@ const DashBoardSideBar = () => {
                     </NavLink>
                   </li>
 
-
                   <li className="mt-3">
                     <NavLink
                       to="/dashboard/user/cashOut"
@@ -237,7 +261,6 @@ const DashBoardSideBar = () => {
                     </NavLink>
                   </li>
 
-
                   <li className="mt-3">
                     <NavLink
                       to="/dashboard/user/transaction"
@@ -250,7 +273,7 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
-                      Transactions
+                        Transactions
                       </span>
                     </NavLink>
                   </li>
@@ -267,7 +290,7 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
-                      Profile
+                        Profile
                       </span>
                     </NavLink>
                   </li>

@@ -14,7 +14,7 @@ const [transactionDate,setTransactionDate] = useState(0)
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server-mongoose.onrender.com/users/${user.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
       return res.json();
     },
   });
@@ -57,7 +57,7 @@ axiosPublic.get("/api/count")
       </div>
       <div className="p-4 text-right">
         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">My Balance</p>
-        <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{data.amount} <span className="text-base">BDT</span></h4>
+        <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{data?.amount?.toFixed(2)} <span className="text-base">BDT</span></h4>
       </div>
       
     </div>

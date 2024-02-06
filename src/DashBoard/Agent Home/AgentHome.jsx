@@ -16,10 +16,11 @@ const AgentHome = () => {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server-mongoose.onrender.com/users/${user.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
       return res.json();
     },
   });
+
 
   const axiosPublic = UseAxiosPublic();
 
@@ -103,7 +104,7 @@ const AgentHome = () => {
               My Balance
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              {data.amount} <span className="text-base">BDT</span>
+              {data.amount.toFixed(2)} <span className="text-base">BDT</span>
             </h4>
           </div>
           {/* <div className="border-t border-blue-gray-50 p-4">
@@ -151,7 +152,7 @@ const AgentHome = () => {
               Today's Total Cash In
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              {transactionDate} <span className="text-base">BDT</span>
+              {transactionDate.toFixed(2)} <span className="text-base">BDT</span>
             </h4>
           </div>
           {/* <div className="border-t border-blue-gray-50 p-4">
@@ -170,7 +171,7 @@ const AgentHome = () => {
               Today's Total Cash Out
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              {transaction} <span className="text-base">BDT</span>
+              {transaction.toFixed(2)} <span className="text-base">BDT</span>
             </h4>
           </div>
           {/* <div className="border-t border-blue-gray-50 p-4">

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: "https://e-cash-server-mongoose.onrender.com"
+    baseURL: "https://e-cash-server-mongoose.vercel.app"
     
 })
 const UseAxiosPublic = () => {

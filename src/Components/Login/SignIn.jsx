@@ -33,7 +33,7 @@ const SignIn = () => {
           })
         }
         if (result?.user) {
-          navigate(location?.state ? location?.state : "/"  )
+          navigate(location?.state ? location?.state : "/dashboard"  )
         }
       })
 

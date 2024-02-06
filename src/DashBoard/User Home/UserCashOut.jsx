@@ -27,7 +27,7 @@ const UserCashOut = () => {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server-mongoose.onrender.com/users/${user?.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user?.email}`);
       return res.json();
     },
   });
