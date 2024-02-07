@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 const DashBoardSideBar = () => {
   const [isAdmin] = UserAdmin();
   const [isMember] = UserMember();
-  console.log(isAdmin,isMember)
+
 
 
 
@@ -19,7 +19,7 @@ const DashBoardSideBar = () => {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
+      const res = await fetch(`http://localhost:5000/users/${user.email}`);
       return res.json();
     },
   });
@@ -268,6 +268,22 @@ const DashBoardSideBar = () => {
                     </span>
                   </NavLink>
                 </li>
+                <li className="mt-3">
+                  <NavLink
+                    to="/dashboard/agent/deposit"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                        : "relative px-4 py-3 flex items-center space-x-4 "
+                    }
+                  >
+                    <span className="flex items-center gap-3 justify-center mx-auto">
+                      Deposit
+                    </span>
+                  </NavLink>
+                </li>
               </>
             )}
 
@@ -340,6 +356,22 @@ const DashBoardSideBar = () => {
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
                         Transactions
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/savings"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                       Savings
                       </span>
                     </NavLink>
                   </li>
