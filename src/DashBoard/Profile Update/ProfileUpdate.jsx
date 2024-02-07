@@ -19,7 +19,7 @@ const ProfileUpdate = () => {
   const { isPending, isError, error, data:datas, refetch } = useQuery({
     queryKey: ["data","user"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
+      const res = await fetch(`http://localhost:5000/users/${user.email}`);
       return res.json();
     },
   });

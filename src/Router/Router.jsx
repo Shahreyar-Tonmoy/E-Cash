@@ -18,6 +18,8 @@ import ProfileUpdate from "../DashBoard/Profile Update/profileUpdate";
 import UserSendMoney from "../DashBoard/User Home/UserSendMoney";
 import TabRoute from "../DashBoard/Tabs/TabRoute";
 import UserCashOut from "../DashBoard/User Home/UserCashOut";
+import AgentDeposit from "../DashBoard/Agent Home/AgentDeposit";
+import UserSavings from "../DashBoard/User Home/UserSavings";
 
 
 const Router = createBrowserRouter([
@@ -74,6 +76,10 @@ const Router = createBrowserRouter([
             path : "/dashboard/agent/transaction",
             element: <PrivateRoute><TabRoute></TabRoute></PrivateRoute>,
         },
+        {
+            path : "/dashboard/agent/deposit",
+            element: <PrivateRoute><AgentDeposit></AgentDeposit></PrivateRoute>,
+        },
 
         // user
 
@@ -88,6 +94,10 @@ const Router = createBrowserRouter([
       {
         path : "/dashboard/user/transaction",
         element: <PrivateRoute><TabRoute></TabRoute></PrivateRoute>,
+    },
+      {
+        path : "/dashboard/user/savings",
+        element: <PrivateRoute><UserSavings></UserSavings></PrivateRoute>,
     },
     
         
