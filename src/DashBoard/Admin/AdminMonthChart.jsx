@@ -28,7 +28,7 @@ const AdminMonthChart = () => {
     options: {
       chart: {
         height: 350,
-        type: 'line',
+        type: 'graph',
         stacked: false,
       },
       title: {
