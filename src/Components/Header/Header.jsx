@@ -22,13 +22,8 @@ const Header = () => {
           <li>
             About
           </li>
-<<<<<<< HEAD
-          <li> <Link to='/contact'><a>Contact</a></Link>
-=======
-          <li>
-            Contact
->>>>>>> 4456637218bdac4b50f123ea495ecc70f5bc2728
-          </li>
+          {/* <li> <Link to='/contact'><a>Contact</a></Link> */}
+          {/* </li> */}
         </ul>
       </div>
 
