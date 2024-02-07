@@ -11,16 +11,16 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   updateProfile,
-  FacebookAuthProvider
+  FacebookAuthProvider,
 } from "firebase/auth";
 import app from "./Firebase.init";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
-const axiosPublic = UseAxiosPublic()
+const axiosPublic = UseAxiosPublic();
 const googleProvider = new GoogleAuthProvider();
-const FbProvider = new FacebookAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -43,50 +43,39 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
-  const SignInWithFb = () => {
+  const signInWithFacebook = () => {
     setLoading(true);
-    return signInWithPopup(auth, FbProvider);
+    return signInWithPopup(auth, facebookProvider);
   };
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, currentUser => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
+      setLoading(false);
+      setUser(currentUser);
 
-        const userEmail = currentUser?.email || user?.email
-        const loggedUser = {email : userEmail}
-        setLoading(false)
-        setUser(currentUser)
-        
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+            setLoading(false);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
 
-        if(currentUser){
-            const userInfo = {email: currentUser.email}
-            axiosPublic.post('/jwt',userInfo)
-            .then(res =>{
-                if(res.data.token){
-                    localStorage.setItem("access-token",res.data.token)
-                    setLoading(false)
-                }
-            })
-            
-
-
-        }
-        else{
-           localStorage.removeItem("access-token")
-           setLoading(false)
-        }
-
-        return () => {
-            unSubscribe()
-        }
-
-    })
-    
-
-
-}, [])
+      return () => {
+        unSubscribe();
+      };
+    });
+  }, []);
 
   const AuthInfo = {
     user,
@@ -96,7 +85,7 @@ const AuthProvider = ({ children }) => {
     signInUser,
     logOut,
     updateUserInfo,
-    SignInWithFb
+    signInWithFacebook,
   };
   // console.log(user);
 
