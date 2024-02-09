@@ -16,7 +16,6 @@
     "@react-icons/all-files": "^4.1.0",
     "@tanstack/react-query": "^5.17.19",
     "axios": "^1.6.5",
-    "date-time": "^4.0.0",
     "emailjs": "^4.0.3",
     "emailjs-com": "^3.2.0",
     "firebase": "^10.7.1",
