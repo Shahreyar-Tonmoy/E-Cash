@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import dateTime from "date-time";
 
@@ -22,10 +23,10 @@ const UserSendMoney = () => {
   const [ammount, setAmmount] = useState("");
   const Navigate = useNavigate();
   const TodaysDate = dateTime().split(" ", 1)[0];
-
+  const Dates = dateTime();
   const [isAdmin] = UserAdmin();
   const [isMember] = UserMember();
-
+  const [loading, setLoading] = useState(false);
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
@@ -51,6 +52,8 @@ const UserSendMoney = () => {
   };
 
   const hendleSubmit = (e) => {
+    setLoading(true);
+    
     e.preventDefault();
     const account = e.target.account.value;
     const amounts = e.target.amount.value;
@@ -65,9 +68,11 @@ const UserSendMoney = () => {
 
     if (data?.phoneNumber == account) {
       swal("Oops!", "You can't send money in your own account!", "error");
+      setLoading(false);
     } else if (data?.amount <= parseInt(amounts)) {
       console.log(data?.amount <= 0 || data?.Amount <= amounts);
       swal("Oops!", "you don't have sufficient balance!", "error");
+      setLoading(false);
     } else {
       axiosPublic
         .get(`/usersNumber/${account}`)
@@ -75,7 +80,7 @@ const UserSendMoney = () => {
           const number = parseInt(amounts) + res.data.amount;
           const Amount = number.toString();
           const to = res.data._id;
-
+          const receiver = res?.data.phoneNumber;
           const updateData = { Amount };
 
           axiosPublic.put(`/usersNumber/${account}`, updateData).then((res) => {
@@ -101,20 +106,48 @@ const UserSendMoney = () => {
                       type,
                     };
 
-                    console.log(transactionData);
+                    const senderNumber = data.phoneNumber;
+                    const receiverNumber = receiver;
+                    const tk = myAmount.toFixed(2);
+
+                    const message = `${type} Tk ${amounts} to ${receiverNumber} seccessfully. At ${Dates}. Balance Tk ${tk}. TrxID ${transactionId}`;
+
+                    const messageReceiver = `You have received Tk ${amounts} from  ${senderNumber}. Your new balance is ${Amount}. At ${Dates}. TrxID ${transactionId} `;
+
+                    const senderData = {
+                      senderNumber,
+
+                      message,
+                    };
+
+                    const receiverData = {
+                      receiverNumber,
+
+                      messageReceiver,
+                    };
 
                     axiosPublic
                       .post("/transaction", transactionData)
                       .then((res) => {
-                        if (res.data) {
-                          e.target.reset();
-                          swal(
-                            "Great!",
-                            "You Are Successfully Send Money!",
-                            "success"
-                          );
-                          Navigate("/dashBoard");
-                        }
+                        axiosPublic
+                          .post("/send/sender", senderData)
+
+                          .then((res) => {
+                            axiosPublic
+                              .post("/send/receiver", receiverData)
+                              .then((res) => {
+                                if (res.data) {
+                                  e.target.reset();
+                                  swal(
+                                    "Great!",
+                                    "You Are Successfully Send Money!",
+                                    "success"
+                                  );
+                                  setLoading(false);
+                                  Navigate("/dashBoard");
+                                }
+                              });
+                          });
                       });
                   }
                 });
@@ -132,7 +165,14 @@ const UserSendMoney = () => {
 
   return (
     <div>
-      {data?.phoneNumber ? (
+
+    {
+      loading ? (
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-violet-900"></div>
+        </div>
+      ) : (
+        data?.phoneNumber ? (
         <main className="flex  flex-col items-center justify-between p-6 lg:pt-40">
           <form
             onSubmit={hendleSubmit}
@@ -257,7 +297,12 @@ const UserSendMoney = () => {
         </main>
       ) : (
         <ProfileUpdate></ProfileUpdate>
-      )}
+      )
+      )
+    }
+
+
+
     </div>
   );
 };

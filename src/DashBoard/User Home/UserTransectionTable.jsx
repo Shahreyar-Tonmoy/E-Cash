@@ -1,36 +1,35 @@
 /* eslint-disable react/prop-types */
 
+
+
+import React from "react";
 import { useEffect, useState } from "react";
 
-
-
-
 const UserTransectionTable = ({ data, From }) => {
-    const amount = parseInt(data.amounts);
+  const amount = parseInt(data.amounts);
+  const [charge, setCharge] = useState("");
 
- 
-    const [charge, setCharge] = useState("")
-  
-  useEffect(()=>{
-      if (data.type === "Cash Out") {
-          const sum =((amount * 4) / 1000);
-          setCharge(sum);
-          
-        }
-  },[amount,data.type])
+  useEffect(() => {
+    if (data.type === "Cash Out") {
+      const sum = (amount * 4) / 1000;
+      setCharge(sum);
+    }
+  }, [amount, data.type]);
 
   return (
-    <tr>
-      <td>{data.from[0].phoneNumber}</td>
-      <td>{From}</td>
-      <td>{data?.createdAt.split("T", 1)[0]}</td>
 
-      <td>{amount}{ data.type === "Cash Out" &&
-                    <span>+{charge}</span>
-                }</td>
-      <td>{data?.type}</td>
-      <td>{data?.transactionId}</td>
-    </tr>
+        <tr>
+          <td>{data.from[0].phoneNumber}</td>
+          <td>{From}</td>
+          <td>{data?.createdAt.split("T", 1)[0]}</td>
+          <td>
+            {amount}
+            {data.type === "Cash Out" && <span>+{charge}</span>}
+          </td>
+          <td>{data?.type}</td>
+          <td>{data?.transactionId}</td>
+        </tr>
+ 
   );
 };
 

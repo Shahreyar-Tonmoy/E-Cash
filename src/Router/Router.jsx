@@ -22,7 +22,7 @@ import AgentDeposit from "../DashBoard/Agent Home/AgentDeposit";
 import UserSavings from "../DashBoard/User Home/UserSavings";
 import AllUsers from "../DashBoard/Admin/AllUsers";
 import AllAgents from "../DashBoard/Admin/AllAgents";
-import Transaction from './../DashBoard/Admin/Transaction';
+
 import AcceptAgent from "../DashBoard/Admin/AcceptAgent";
 import AcceptAgentDeposit from "../DashBoard/Admin/AcceptAgentDeposit";
 
@@ -72,10 +72,7 @@ const Router = createBrowserRouter([
   path : "/dashboard/admin/allagents",
   element: <PrivateRoute><AllAgents></AllAgents></PrivateRoute>,
 },
-{
-  path : "/dashboard/admin/transaction",
-  element: <PrivateRoute><Transaction></Transaction></PrivateRoute>,
-},
+
 {
   path : "/dashboard/admin/acceptagent",
   element: <PrivateRoute><AcceptAgent></AcceptAgent></PrivateRoute>,

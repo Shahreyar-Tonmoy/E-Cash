@@ -13,7 +13,7 @@ import {
   updateProfile,
   FacebookAuthProvider
 } from "firebase/auth";
-import app from "./Firebase.init";
+import app from "./Firebase.init.js";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 
 export const AuthContext = createContext(null);
@@ -25,68 +25,89 @@ const FbProvider = new FacebookAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
   const createUser = (email, password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password)
+      .catch((error) => {
+        console.error('Error creating user:', error);
+        setLoading(false);
+        throw error;
+      });
   };
 
   const updateUserInfo = (profile) => {
     return updateProfile(auth.currentUser, profile);
   };
-  // console.log(user);
 
   const signInUser = (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password)
+      .catch((error) => {
+        console.error('Error signing in:', error);
+        setLoading(false);
+        throw error;
+      });
   };
+
   const SignInWithGoogle = () => {
     setLoading(true);
-    return signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider)
+      .catch((error) => {
+        console.error('Error signing in with Google:', error);
+        setLoading(false);
+        throw error;
+      });
   };
+
   const SignInWithFb = () => {
     setLoading(true);
-    return signInWithPopup(auth, FbProvider);
+    return signInWithPopup(auth, FbProvider)
+      .catch((error) => {
+        console.error('Error signing in with Facebook:', error);
+        setLoading(false);
+        throw error;
+      });
   };
+
   const logOut = () => {
     setLoading(true);
-    return signOut(auth);
+    return signOut(auth)
+      .catch((error) => {
+        console.error('Error signing out:', error);
+        setLoading(false);
+        throw error;
+      });
   };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = {email : userEmail};
+      setLoading(false);
+      setUser(currentUser);
 
-        const userEmail = currentUser?.email || user?.email
-        const loggedUser = {email : userEmail}
-        setLoading(false)
-        setUser(currentUser)
-        
+      if(currentUser){
+        const userInfo = {email: currentUser.email};
+        axiosPublic.post('/jwt', userInfo)
+          .then(res => {
+            if(res.data.token){
+              localStorage.setItem("access-token", res.data.token);
+            }
+          })
+          .catch((error) => {
+            console.error('Error getting JWT:', error);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
+    });
 
-        if(currentUser){
-            const userInfo = {email: currentUser.email}
-            axiosPublic.post('/jwt',userInfo)
-            .then(res =>{
-                if(res.data.token){
-                    localStorage.setItem("access-token",res.data.token)
-                    setLoading(false)
-                }
-            })
-            
+    return () => {
+      unSubscribe();
+    };
 
-
-        }
-        else{
-           localStorage.removeItem("access-token")
-           setLoading(false)
-        }
-
-        return () => {
-            unSubscribe()
-        }
-
-    })
-    
-
-
-}, [])
+  }, []);
 
   const AuthInfo = {
     user,
@@ -98,7 +119,6 @@ const AuthProvider = ({ children }) => {
     updateUserInfo,
     SignInWithFb
   };
-  // console.log(user);
 
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
@@ -106,6 +126,7 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+
 AuthProvider.propTypes = {
   children: PropTypes.node,
 };
