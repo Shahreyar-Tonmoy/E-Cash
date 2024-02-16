@@ -19,7 +19,7 @@ const AgentTransactionTable = ({data,From}) => {
     return (
         <tr>
                 <td>{From}</td>
-                <td>{data.to[0].phoneNumber}</td>
+                <td>{data?.to[0]?.phoneNumber}</td>
                 <td>{data?.createdAt.split("T", 1)[0]}</td>
                 <td>{data?.amounts} { data.type === "Cash Out" &&
                     <span>+{charge} vat</span>

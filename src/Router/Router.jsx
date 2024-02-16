@@ -25,6 +25,7 @@ import AllAgents from "../DashBoard/Admin/AllAgents";
 
 import AcceptAgent from "../DashBoard/Admin/AcceptAgent";
 import AcceptAgentDeposit from "../DashBoard/Admin/AcceptAgentDeposit";
+import TransactionForm from "../DashBoard/Notification/AblyComponent";
 
 
 const Router = createBrowserRouter([
@@ -108,6 +109,10 @@ const Router = createBrowserRouter([
         {
           path : "/dashboard/user/sendMoney",
           element: <PrivateRoute><UserSendMoney></UserSendMoney></PrivateRoute>,
+      },
+        {
+          path : "/dashboard/sms",
+          element: <TransactionForm></TransactionForm>
       },
         {
           path : "/dashboard/user/cashOut",

@@ -5,7 +5,7 @@ const AllAgents = () => {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/api/allagent`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/api/allagent`);
       return res.json();
     },
   });

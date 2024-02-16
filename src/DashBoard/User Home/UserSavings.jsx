@@ -22,7 +22,7 @@ const UserSavings = () => {
   const { isPending, isError, error, data, refetch } = useQuery({
     queryKey: ["data", email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/transaction/savings/${email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/transaction/savings/${email}`);
       return res.json();
     },
   });

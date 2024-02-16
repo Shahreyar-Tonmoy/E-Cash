@@ -19,7 +19,7 @@ const DashBoardSideBar = () => {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${user.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
       return res.json();
     },
   });
@@ -280,6 +280,22 @@ const DashBoardSideBar = () => {
                   <li className="mt-3">
                     <NavLink
                       to="/dashBoard"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+                        DashBoard
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/sms"
                       className={({ isActive, isPending }) =>
                         isPending
                           ? "pending"

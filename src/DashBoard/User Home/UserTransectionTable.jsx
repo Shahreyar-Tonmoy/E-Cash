@@ -2,7 +2,7 @@
 
 
 
-import React from "react";
+
 import { useEffect, useState } from "react";
 
 const UserTransectionTable = ({ data, From }) => {
@@ -16,15 +16,19 @@ const UserTransectionTable = ({ data, From }) => {
     }
   }, [amount, data.type]);
 
+
+
+
+
   return (
 
         <tr>
-          <td>{data.from[0].phoneNumber}</td>
+          <td>{data?.from[0]?.phoneNumber}</td>
           <td>{From}</td>
           <td>{data?.createdAt.split("T", 1)[0]}</td>
           <td>
             {amount}
-            {data.type === "Cash Out" && <span>+{charge}</span>}
+            {data?.type === "Cash Out" && <span>+{charge}</span>}
           </td>
           <td>{data?.type}</td>
           <td>{data?.transactionId}</td>

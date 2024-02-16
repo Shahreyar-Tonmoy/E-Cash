@@ -11,7 +11,7 @@ const AgentDeposit = () => {
   const userQuery = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${user.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user.email}`);
       return res.json();
     },
   });
@@ -19,7 +19,7 @@ const AgentDeposit = () => {
   const historyQuery = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/api/get/agent/deposits/${userQuery.data?._id}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/api/get/agent/deposits/${userQuery.data?._id}`);
       return res.json();
     },
     enabled: Boolean(userQuery.data),
