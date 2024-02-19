@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useQuery } from "@tanstack/react-query";
 
 const fetchTransactionData = async (endpoint) => {
@@ -22,6 +22,7 @@ const Transaction = () => {
 
 
 
+
   return (
     <div>
       <div className="my-12 mx-5 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4 ">
@@ -35,7 +36,7 @@ const Transaction = () => {
           </div>
           <div className="p-4 text-right">
             <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Weekly Transaction</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"> <span className="text-base">{weeklyData?.totalAmount} BDT</span></h4>
+            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"> <span className="text-base">{weeklyData?.totalAmount > 0 ? weeklyData?.totalAmount : 0} BDT</span></h4>
           </div>
         </div>
 
@@ -49,7 +50,7 @@ const Transaction = () => {
           </div>
           <div className="p-4 text-right">
             <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Monthly Transaction</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"> <span className="text-base">{monthlyData[0].totalAmount} BDT</span></h4>
+            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"> <span className="text-base">{monthlyData[0].totalAmount > 0 ? monthlyData[0].totalAmount : 0 } BDT</span></h4>
           </div>
         </div>
 

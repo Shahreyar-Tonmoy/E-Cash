@@ -8,7 +8,7 @@ import swal from "sweetalert";
 import { v1 as uuidv4 } from "uuid";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import { useNavigate } from "react-router-dom";
-import ProfileUpdate from "../Profile Update/profileUpdate";
+import ProfileUpdate from "../ProfileUpdate/profileUpdate";
 import UserAdmin from "../../Hooks/UserAdmin";
 import UserMember from "../../Hooks/UseMember";
 

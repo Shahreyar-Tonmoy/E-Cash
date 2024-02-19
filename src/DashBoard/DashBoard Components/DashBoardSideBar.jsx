@@ -293,22 +293,7 @@ const DashBoardSideBar = () => {
                       </span>
                     </NavLink>
                   </li>
-                  <li className="mt-3">
-                    <NavLink
-                      to="/dashboard/sms"
-                      className={({ isActive, isPending }) =>
-                        isPending
-                          ? "pending"
-                          : isActive
-                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black  border border-[#B46EA3] "
-                          : "relative px-4 py-3 flex items-center space-x-4 "
-                      }
-                    >
-                      <span className="flex items-center gap-3 justify-center mx-auto">
-                        DashBoard
-                      </span>
-                    </NavLink>
-                  </li>
+                  
 
                   <li className="mt-3">
                     <NavLink

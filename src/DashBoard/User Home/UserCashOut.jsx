@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import UserAdmin from "../../Hooks/UserAdmin";
 import UserMember from "../../Hooks/UseMember";
 import { useQuery } from "@tanstack/react-query";
-import ProfileUpdate from "../Profile Update/profileUpdate";
+import ProfileUpdate from "../ProfileUpdate/profileUpdate";
 import dateTime from "date-time";
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 import axios from "axios";

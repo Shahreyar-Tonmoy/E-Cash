@@ -13,7 +13,7 @@ import PrivateRoute from "../Components/Login/PrivateRoute";
 import CurrencyCalculator from "../Components/Currency Calculator/CurrencyCalculator";
 import DashBoardHome from "../DashBoard/DashBoard Home/DashBoardHome";
 import AgentSendMoney from "../DashBoard/Agent Home/AgentSendMoney";
-import ProfileUpdate from "../DashBoard/Profile Update/profileUpdate";
+
 
 import UserSendMoney from "../DashBoard/User Home/UserSendMoney";
 import TabRoute from "../DashBoard/Tabs/TabRoute";
@@ -26,6 +26,7 @@ import AllAgents from "../DashBoard/Admin/AllAgents";
 import AcceptAgent from "../DashBoard/Admin/AcceptAgent";
 import AcceptAgentDeposit from "../DashBoard/Admin/AcceptAgentDeposit";
 import TransactionForm from "../DashBoard/Notification/AblyComponent";
+import ProfileUpdate from "../DashBoard/ProfileUpdate/profileUpdate";
 
 
 const Router = createBrowserRouter([

@@ -13,7 +13,7 @@ import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import UserAdmin from "../../Hooks/UserAdmin";
 import UserMember from "../../Hooks/UseMember";
-import ProfileUpdate from "../Profile Update/profileUpdate";
+import ProfileUpdate from "../ProfileUpdate/profileUpdate";
 
 const UserSendMoney = () => {
   const { user } = useContext(AuthContext);
