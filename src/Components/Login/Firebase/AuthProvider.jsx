@@ -11,14 +11,14 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   updateProfile,
-  FacebookAuthProvider
+  FacebookAuthProvider,
 } from "firebase/auth";
 import app from "./Firebase.init.js";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
-const axiosPublic = UseAxiosPublic()
+const axiosPublic = UseAxiosPublic();
 const googleProvider = new GoogleAuthProvider();
 const FbProvider = new FacebookAuthProvider();
 
@@ -28,12 +28,13 @@ const AuthProvider = ({ children }) => {
 
   const createUser = (email, password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password)
-      .catch((error) => {
-        console.error('Error creating user:', error);
+    return createUserWithEmailAndPassword(auth, email, password).catch(
+      (error) => {
+        console.error("Error creating user:", error);
         setLoading(false);
         throw error;
-      });
+      }
+    );
   };
 
   const updateUserInfo = (profile) => {
@@ -42,61 +43,58 @@ const AuthProvider = ({ children }) => {
 
   const signInUser = (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password)
-      .catch((error) => {
-        console.error('Error signing in:', error);
-        setLoading(false);
-        throw error;
-      });
+    return signInWithEmailAndPassword(auth, email, password).catch((error) => {
+      console.error("Error signing in:", error);
+      setLoading(false);
+      throw error;
+    });
   };
 
   const SignInWithGoogle = () => {
     setLoading(true);
-    return signInWithPopup(auth, googleProvider)
-      .catch((error) => {
-        console.error('Error signing in with Google:', error);
-        setLoading(false);
-        throw error;
-      });
+    return signInWithPopup(auth, googleProvider).catch((error) => {
+      console.error("Error signing in with Google:", error);
+      setLoading(false);
+      throw error;
+    });
   };
 
   const SignInWithFb = () => {
     setLoading(true);
-    return signInWithPopup(auth, FbProvider)
-      .catch((error) => {
-        console.error('Error signing in with Facebook:', error);
-        setLoading(false);
-        throw error;
-      });
+    return signInWithPopup(auth, FbProvider).catch((error) => {
+      console.error("Error signing in with Facebook:", error);
+      setLoading(false);
+      throw error;
+    });
   };
 
   const logOut = () => {
     setLoading(true);
-    return signOut(auth)
-      .catch((error) => {
-        console.error('Error signing out:', error);
-        setLoading(false);
-        throw error;
-      });
+    return signOut(auth).catch((error) => {
+      console.error("Error signing out:", error);
+      setLoading(false);
+      throw error;
+    });
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, currentUser => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       const userEmail = currentUser?.email || user?.email;
-      const loggedUser = {email : userEmail};
+      const loggedUser = { email: userEmail };
       setLoading(false);
       setUser(currentUser);
 
-      if(currentUser){
-        const userInfo = {email: currentUser.email};
-        axiosPublic.post('/jwt', userInfo)
-          .then(res => {
-            if(res.data.token){
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic
+          .post("/jwt", userInfo)
+          .then((res) => {
+            if (res.data.token) {
               localStorage.setItem("access-token", res.data.token);
             }
           })
           .catch((error) => {
-            console.error('Error getting JWT:', error);
+            console.error("Error getting JWT:", error);
           });
       } else {
         localStorage.removeItem("access-token");
@@ -106,7 +104,6 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-
   }, []);
 
   const AuthInfo = {
@@ -117,7 +114,7 @@ const AuthProvider = ({ children }) => {
     signInUser,
     logOut,
     updateUserInfo,
-    SignInWithFb
+    SignInWithFb,
   };
 
   return (
