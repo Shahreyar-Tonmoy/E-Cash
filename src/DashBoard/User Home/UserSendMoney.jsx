@@ -30,7 +30,9 @@ const UserSendMoney = () => {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user?.email}`);
+      const res = await fetch(
+        `https://e-cash-server-mongoose.vercel.app/users/${user?.email}`
+      );
       return res.json();
     },
   });
@@ -53,7 +55,7 @@ const UserSendMoney = () => {
 
   const hendleSubmit = (e) => {
     setLoading(true);
-    
+
     e.preventDefault();
     const account = e.target.account.value;
     const amounts = e.target.amount.value;
@@ -165,14 +167,11 @@ const UserSendMoney = () => {
 
   return (
     <div>
-
-    {
-      loading ? (
+      {loading ? (
         <div className="flex items-center justify-center h-screen">
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-violet-900"></div>
         </div>
-      ) : (
-        data?.phoneNumber ? (
+      ) : data?.phoneNumber ? (
         <main className="flex  flex-col items-center justify-between p-6 lg:pt-40">
           <form
             onSubmit={hendleSubmit}
@@ -297,12 +296,7 @@ const UserSendMoney = () => {
         </main>
       ) : (
         <ProfileUpdate></ProfileUpdate>
-      )
-      )
-    }
-
-
-
+      )}
     </div>
   );
 };
