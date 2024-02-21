@@ -20,7 +20,7 @@ const Contact = () => {
       };
     return (
         <div className="">
-            {/* <CBanner></CBanner> */}
+            <CBanner></CBanner>
         <div className="lg:flex  justify-evenly max-w-screen-xl mx-auto shadow-2xl bg-white  rounded-xl items-center my-10 ">
           <div className="m-14 gap-5 ">
             <h2 className='text-center text-violet-900 font-bold text-4xl mt-4'> Contact Form</h2>
