@@ -173,13 +173,10 @@ const UserSavings = () => {
      {
       data?.savingsTransactions?.map((data,index)=>
         <tr key={index}>
-
-       
         <td className="text-center border">{index + 1}</td>
         <td className="text-center border">{data?.date?.split("T", 1)[0]}</td>
         <td className="text-center border">{data?.type}</td>
         <td className="text-center border ">{data?.amount}</td>
-
       </tr>
       )
      }
