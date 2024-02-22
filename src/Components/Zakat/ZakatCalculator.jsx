@@ -17,7 +17,7 @@ const ZakatCalculator = () => {
   return (
     <div className="mx-auto p-5 px-6 bg-white rounded-xl shadow-2xl">
       <h1 className="text-2xl font-bold mb-4">Zakat Calculator</h1>
-      <div className="mb-5">
+      <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">Savings (in BDT): </label>
         <input
           type="text"
