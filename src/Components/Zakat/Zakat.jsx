@@ -4,7 +4,7 @@ import store from "../Zakat/Reducers/store";
 const Zakat = () => {
   return (
     <div className="max-w-screen-lg mx-auto px-6">
-      <div className=" lg:flex  mt-40  rounded-none ">
+      <div className=" lg:flex  mt-44  rounded-none ">
         <div className="card-body flex-1">
           <h2 className="text-3xl font-WorkSans font-semibold">
             Zakat Calculator
