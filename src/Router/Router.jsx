@@ -13,7 +13,7 @@ import PrivateRoute from "../Components/Login/PrivateRoute";
 import CurrencyCalculator from "../Components/Currency Calculator/CurrencyCalculator";
 import DashBoardHome from "../DashBoard/DashBoard Home/DashBoardHome";
 import AgentSendMoney from "../DashBoard/Agent Home/AgentSendMoney";
-import ProfileUpdate from "../DashBoard/Profile Update/profileUpdate";
+
 
 import UserSendMoney from "../DashBoard/User Home/UserSendMoney";
 import TabRoute from "../DashBoard/Tabs/TabRoute";
@@ -22,9 +22,11 @@ import AgentDeposit from "../DashBoard/Agent Home/AgentDeposit";
 import UserSavings from "../DashBoard/User Home/UserSavings";
 import AllUsers from "../DashBoard/Admin/AllUsers";
 import AllAgents from "../DashBoard/Admin/AllAgents";
-import Transaction from './../DashBoard/Admin/Transaction';
+
 import AcceptAgent from "../DashBoard/Admin/AcceptAgent";
 import AcceptAgentDeposit from "../DashBoard/Admin/AcceptAgentDeposit";
+import TransactionForm from "../DashBoard/Notification/AblyComponent";
+import ProfileUpdate from "../DashBoard/ProfileUpdate/profileUpdate";
 
 
 const Router = createBrowserRouter([
@@ -72,10 +74,7 @@ const Router = createBrowserRouter([
   path : "/dashboard/admin/allagents",
   element: <PrivateRoute><AllAgents></AllAgents></PrivateRoute>,
 },
-{
-  path : "/dashboard/admin/transaction",
-  element: <PrivateRoute><Transaction></Transaction></PrivateRoute>,
-},
+
 {
   path : "/dashboard/admin/acceptagent",
   element: <PrivateRoute><AcceptAgent></AcceptAgent></PrivateRoute>,
@@ -111,6 +110,10 @@ const Router = createBrowserRouter([
         {
           path : "/dashboard/user/sendMoney",
           element: <PrivateRoute><UserSendMoney></UserSendMoney></PrivateRoute>,
+      },
+        {
+          path : "/dashboard/sms",
+          element: <TransactionForm></TransactionForm>
       },
         {
           path : "/dashboard/user/cashOut",

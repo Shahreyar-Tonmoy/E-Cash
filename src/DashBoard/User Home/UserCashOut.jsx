@@ -8,9 +8,10 @@ import { useNavigate } from "react-router-dom";
 import UserAdmin from "../../Hooks/UserAdmin";
 import UserMember from "../../Hooks/UseMember";
 import { useQuery } from "@tanstack/react-query";
-import ProfileUpdate from "../Profile Update/profileUpdate";
+import ProfileUpdate from "../ProfileUpdate/profileUpdate";
 import dateTime from "date-time";
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
+import axios from "axios";
 
 const UserCashOut = () => {
   const { user } = useContext(AuthContext);
@@ -20,14 +21,15 @@ const UserCashOut = () => {
   const [ammount, setAmmount] = useState("");
   const Navigate = useNavigate();
   const TodaysDate = dateTime().split(" ", 1)[0];
-
+  const Dates = dateTime();
+  const [loading, setLoading] = useState(false);
   const [isAdmin] = UserAdmin();
   const [isMember] = UserMember();
 
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user?.email}`);
       return res.json();
     },
   });
@@ -49,6 +51,8 @@ const UserCashOut = () => {
   };
 
   const hendleSubmit = (e) => {
+    setLoading(true);
+    
     e.preventDefault();
     const account = e.target.account.value;
     const amounts = e.target.amount.value;
@@ -63,9 +67,11 @@ const UserCashOut = () => {
 
     if (data?.phoneNumber == account) {
       swal("Oops!", "You can't send money in your own account!", "error");
-    } else if (data?.amount < (sum + (sum * 14) / 1000) || data?.amount <= 0) {
+      setLoading(false);
+    } else if (data?.amount < sum + (sum * 14) / 1000 || data?.amount <= 0) {
       // console.log(data?.amount <= 0 || data?.Amount <= amounts);
       swal("Oops!", "you don't have sufficient balance!", "error");
+      setLoading(false);
     } else {
       axiosPublic
         .get(`/agentNumber/${account}`)
@@ -76,23 +82,21 @@ const UserCashOut = () => {
             (parseInt(amounts) * 4) / 1000;
           const Amount = parseInt(numbers);
 
+          const profit = (parseInt(amounts) * 10) / 1000;
+          const mainBalance = parseInt(profit);
+
           const to = res.data._id;
+          const receiver = res?.data.phoneNumber;
 
           const updateData = { Amount };
-
-          console.log(numbers);
 
           axiosPublic.put(`/usersNumber/${account}`, updateData).then((res) => {
             // console.log(res.data);
             if (res.data.modifiedCount > 0) {
-             
-
               const dataAma = data?.amount - (sum + (sum * 14) / 1000);
               const myAmount = dataAma;
-             
+
               const updatemyAmount = { myAmount };
-
-
 
               axiosPublic
                 .put(`/myAmount/${From}`, updatemyAmount)
@@ -108,22 +112,70 @@ const UserCashOut = () => {
                       fromRole,
                       type,
                     };
+                    const senderNumber = data.phoneNumber;
+                    const receiverNumber = receiver;
+                    const tk = myAmount.toFixed(2);
 
+                    const fee = (sum * 14) / 1000;
 
+                    const message = `${type} Tk ${amounts} to ${receiverNumber} seccessfully. Fee ${fee}. At ${Dates}. Balance Tk ${tk}. TrxID ${transactionId}`;
 
-                      axiosPublic
-                        .post("/transaction", transactionData)
-                        .then((res) => {
-                          if (res.data) {
-                            e.target.reset();
-                            swal(
-                              "Great!",
-                              "You Are Successfully Send Money!",
-                              "success"
-                            );
-                            Navigate("/dashBoard");
-                          }
-                        });
+                    const messageReceiver = `${type} Tk ${amounts} from ${senderNumber} seccessfully. At ${Dates}. Balance Tk ${Amount}. TrxID ${transactionId}`;
+
+                    const senderData = {
+                      receiverNumber,
+                      senderNumber,
+                      transactionId,
+                      tk,
+                      type,
+                      fee,
+                      message,
+                      amounts,
+                    };
+
+                    const receiverData = {
+                      receiverNumber,
+                      senderNumber,
+                      transactionId,
+                      tk,
+                      type,
+                      fee,
+                      messageReceiver,
+                      amounts,
+                    };
+
+                    const Balance = {
+                      mainBalance:mainBalance
+                    } 
+
+                    axiosPublic
+                      .post("/transaction", transactionData)
+
+                      .then((res) => {
+                        axiosPublic
+                          .put("/update-main-balance",Balance)
+                          .then((res) => {
+                            axiosPublic
+                              .post("/send/sender", senderData)
+
+                              .then((res) => {
+                                axiosPublic
+                                  .post("/send/receiver", receiverData)
+                                  .then((res) => {
+                                    if (res.data) {
+                                      e.target.reset();
+                                      swal(
+                                        "Great!",
+                                        "You Are Successfully Send Money!",
+                                        "success"
+                                      );
+                                      Navigate("/dashBoard");
+                                      setLoading(false);
+                                    }
+                                  });
+                              });
+                          });
+                      });
                   }
                 });
             }
@@ -133,6 +185,7 @@ const UserCashOut = () => {
           console.log(err.response.status);
           if (err.response.status === 404) {
             swal("Oops!", "Invalid Agent Account Number!", "error");
+            setLoading(false);
           }
         });
     }
@@ -140,8 +193,13 @@ const UserCashOut = () => {
 
   return (
     <div>
-      {data?.phoneNumber ? (
-        <main className="flex  flex-col items-center justify-between p-6 lg:pt-40">
+      {loading ? (
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-violet-900"></div>
+        </div>
+      ) : (
+        data?.phoneNumber ? (
+          <main className="flex  flex-col items-center justify-between p-6 lg:pt-40">
           <form
             onSubmit={hendleSubmit}
             className="bg-white w-full max-w-3xl mx-auto px-4 lg:px-6 py-8 shadow-md rounded-md flex flex-col lg:flex-row"
@@ -228,7 +286,9 @@ const UserCashOut = () => {
                         </svg>
                       </div>
                       <div className="-mt-8">
-                        <p className="font-semibold text-violet-900">Your Account Number</p>
+                        <p className="font-semibold text-violet-900">
+                          Your Account Number
+                        </p>
                         <p
                           id="imageCardNumber"
                           className="font-medium tracking-more-wider h-6"
@@ -237,7 +297,9 @@ const UserCashOut = () => {
                         </p>
                       </div>
                       <div className=" pt-1">
-                        <p className="font-semibold text-violet-900">Cash Out Number</p>
+                        <p className="font-semibold text-violet-900">
+                          Cash Out Number
+                        </p>
                         <p
                           id="imageCardNumber"
                           className="font-medium tracking-more-wider h-6"
@@ -247,7 +309,9 @@ const UserCashOut = () => {
                       </div>
                       <div className=" flex justify-between pt-1">
                         <div>
-                          <p className="font-semibold text-violet-900">Ammount</p>
+                          <p className="font-semibold text-violet-900">
+                            Ammount
+                          </p>
                           <p
                             id="imageCardName"
                             className="font-medium tracking-widest h-6"
@@ -272,11 +336,17 @@ const UserCashOut = () => {
             </div>
           </form>
         </main>
-      ) : (
-        <ProfileUpdate></ProfileUpdate>
+        ) : (
+          <ProfileUpdate></ProfileUpdate>
+        )
       )}
     </div>
   );
 };
 
 export default UserCashOut;
+
+
+
+
+
