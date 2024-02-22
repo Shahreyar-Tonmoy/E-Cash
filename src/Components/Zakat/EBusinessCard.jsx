@@ -16,7 +16,7 @@ const EBusinessCard = ({ image, title, details,link,linkName,disabled,header }) 
         </figure>
         <div className="card-body flex-1">
           <h2 className="text-xl mb-3 font-WorkSans font-semibold">{header}</h2>
-          <h2 className="text-3xl font-WorkSans font-semibold">{title}</h2>
+          <h2 className="text-4xl font-WorkSans font-semibold">{title}</h2>
           <p className="text-lg">{details}</p>
           
           <div className={disabled}>
