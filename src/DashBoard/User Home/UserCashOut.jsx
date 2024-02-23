@@ -14,7 +14,6 @@ import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 
 const UserCashOut = () => {
   const { user } = useContext(AuthContext);
-
   const axiosPublic = UseAxiosPublic();
   const [inputValue, setInputValue] = useState("");
   const [ammount, setAmmount] = useState("");
