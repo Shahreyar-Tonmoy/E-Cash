@@ -4,8 +4,15 @@ import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import UserMember from "../../Hooks/UseMember";
 import UserAdmin from "../../Hooks/UserAdmin";
+<<<<<<< HEAD
 import { FaHome } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
+=======
+import { FaHome,FaBalanceScaleLeft } from "react-icons/fa";
+import { FcMoneyTransfer } from "react-icons/fc";
+import { ImProfile } from "react-icons/im";
+import { IoHome } from "react-icons/io5";
+>>>>>>> 5501a940e8a91ae8f9beccf1c9f09f9e2ab3a9a3
 
 const DashBoardSideBar = () => {
   const [isAdmin] = UserAdmin();
@@ -289,15 +296,22 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
-                        DashBoard
+                      <IoHome className="w-8 h-8"/>
+                        User Home
                       </span>
                     </NavLink>
                   </li>
+<<<<<<< HEAD
                   
 
                   <li className="mt-3">
                     <NavLink
                       to="/dashboard/user/sendMoney"
+=======
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/userprofile"
+>>>>>>> 5501a940e8a91ae8f9beccf1c9f09f9e2ab3a9a3
                       className={({ isActive, isPending }) =>
                         isPending
                           ? "pending"
@@ -307,14 +321,17 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
-                        Send Money
+<<<<<<< HEAD
+=======
+                      <ImProfile className="w-8 h-8"/>
+                        User Profile
                       </span>
                     </NavLink>
                   </li>
 
                   <li className="mt-3">
                     <NavLink
-                      to="/dashboard/user/cashOut"
+                      to="/dashboard/user/sendmoney"
                       className={({ isActive, isPending }) =>
                         isPending
                           ? "pending"
@@ -324,6 +341,32 @@ const DashBoardSideBar = () => {
                       }
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
+                      <FcMoneyTransfer className="w-8 h-8"/>
+>>>>>>> 5501a940e8a91ae8f9beccf1c9f09f9e2ab3a9a3
+                        Send Money
+                      </span>
+                    </NavLink>
+                  </li>
+<<<<<<< HEAD
+
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/cashOut"
+=======
+                  <li className="mt-3">
+                    <NavLink
+                      to="/dashboard/user/balancecheck"
+>>>>>>> 5501a940e8a91ae8f9beccf1c9f09f9e2ab3a9a3
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-[#B46EA3] to-[#6F74BE]"
+                          : "relative px-4 py-3 flex items-center space-x-4 "
+                      }
+                    >
+                      <span className="flex items-center gap-3 justify-center mx-auto">
+<<<<<<< HEAD
                         Cash Out
                       </span>
                     </NavLink>
@@ -375,6 +418,11 @@ const DashBoardSideBar = () => {
                     >
                       <span className="flex items-center gap-3 justify-center mx-auto">
                         Profile
+=======
+                      <FaBalanceScaleLeft className="w-8 h-8"/>
+                      
+                      Balance Check
+>>>>>>> 5501a940e8a91ae8f9beccf1c9f09f9e2ab3a9a3
                       </span>
                     </NavLink>
                   </li>

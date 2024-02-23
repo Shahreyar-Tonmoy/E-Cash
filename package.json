@@ -23,9 +23,13 @@
     "@tanstack/react-query": "^5.17.19",
     "ably": "^1.2.49",
     "axios": "^1.6.5",
+<<<<<<< HEAD
     "date-time": "^4.0.0",
     "den": "^0.0.0",
     "dotenv": "^16.4.1",
+=======
+    "emailjs": "^4.0.3",
+>>>>>>> 5501a940e8a91ae8f9beccf1c9f09f9e2ab3a9a3
     "emailjs-com": "^3.2.0",
     "firebase": "^10.7.1",
     "flatpickr": "^4.6.13",

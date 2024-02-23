@@ -2,8 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayOut from "../LayOut/MainLayOut";
 import Home from "../Home/Home";
 import Error from "../Error/Error";
-
-
 import DigitalBankingHome from "../Components/DigitalBanking/DigitalBankingHome";
 import Contact from "../Components/Contact/Contact";
 import SignIn from "../Components/Login/SignIn";
@@ -12,6 +10,7 @@ import DashBoardLayOut from "../DashBoard/DashBoard LayOut/DashBoardLayOut";
 import PrivateRoute from "../Components/Login/PrivateRoute";
 import CurrencyCalculator from "../Components/Currency Calculator/CurrencyCalculator";
 import DashBoardHome from "../DashBoard/DashBoard Home/DashBoardHome";
+<<<<<<< HEAD
 import AgentSendMoney from "../DashBoard/Agent Home/AgentSendMoney";
 
 
@@ -27,6 +26,10 @@ import AcceptAgent from "../DashBoard/Admin/AcceptAgent";
 import AcceptAgentDeposit from "../DashBoard/Admin/AcceptAgentDeposit";
 import TransactionForm from "../DashBoard/Notification/AblyComponent";
 import ProfileUpdate from "../DashBoard/ProfileUpdate/profileUpdate";
+=======
+import SentMoney from "../DashBoard/User Home/SentMoney/SentMoney";
+import UserProfile from "../DashBoard/User Home/UserProfile/UserProfile";
+>>>>>>> 5501a940e8a91ae8f9beccf1c9f09f9e2ab3a9a3
 
 
 const Router = createBrowserRouter([
@@ -88,6 +91,7 @@ const Router = createBrowserRouter([
             path : "/dashboard",
             element: <PrivateRoute><DashBoardHome></DashBoardHome></PrivateRoute>,
         },
+<<<<<<< HEAD
         {
             path : "/dashboard/agent/sendMoney",
             element: <PrivateRoute><AgentSendMoney></AgentSendMoney></PrivateRoute>,
@@ -128,6 +132,22 @@ const Router = createBrowserRouter([
         element: <PrivateRoute><UserSavings></UserSavings></PrivateRoute>,
     },
     
+=======
+          // Perticepent(User)
+        {
+            path : "/dashboard/user/sendmoney",
+            element: <PrivateRoute><SentMoney></SentMoney></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/user/balancecheck",
+            element: <PrivateRoute><SentMoney></SentMoney></PrivateRoute>,
+        },
+        {
+            path : "/dashboard/user/userprofile",
+            element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
+        },
+        
+>>>>>>> 5501a940e8a91ae8f9beccf1c9f09f9e2ab3a9a3
         
 
     ]
