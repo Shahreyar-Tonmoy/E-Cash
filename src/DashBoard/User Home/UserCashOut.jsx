@@ -34,11 +34,9 @@ const UserCashOut = () => {
   if (isPending) {
     return <>loading....................</>;
   }
-
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
-
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
