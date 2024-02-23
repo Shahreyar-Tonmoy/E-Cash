@@ -5,7 +5,7 @@ import { Chart } from 'react-google-charts';
 
 const fetchDailyTotalAmount = async () => {
   try {
-    const response = await fetch("https://e-cash-server-mongoose.vercel.app/get/daily/totalAmount");
+    const response = await fetch("http://localhost:5000/get/daily/totalAmount");
     if (!response.ok) {
       throw new Error("Failed to fetch daily total amount data");
     }
