@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const fetchTransactionData = async (endpoint) => {
-  const res = await fetch(`https://e-cash-server-mongoose.vercel.app/${endpoint}/transaction`);
+  const res = await fetch(`http://localhost:5000/${endpoint}/transaction`);
   return res.json();
 };
 
