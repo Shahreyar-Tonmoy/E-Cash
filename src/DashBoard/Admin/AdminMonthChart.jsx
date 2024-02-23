@@ -8,7 +8,7 @@ import { Chart } from 'react-google-charts';
 
 const fetchMonthlyData = async () => {
   try {
-    const response = await fetch("https://e-cash-server-mongoose.vercel.app/get/month/transaction");
+    const response = await fetch("http://localhost:5000/get/month/transaction");
     if (!response.ok) {
       throw new Error("Failed to fetch monthly data");
     }
