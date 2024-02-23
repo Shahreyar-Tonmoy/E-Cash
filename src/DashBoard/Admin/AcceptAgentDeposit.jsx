@@ -8,7 +8,7 @@ const AcceptAgentDeposit = () => {
   const { isPending, isError, error, data,refetch } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/api/agent/deposits`);
+      const res = await fetch(`http://localhost:5000/api/agent/deposits`);
       return res.json();
     },
   });
