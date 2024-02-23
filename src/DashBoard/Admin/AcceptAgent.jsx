@@ -25,7 +25,7 @@ const AcceptAgent = () => {
           <td className="p-3 px-5"><input type="text" defaultValue="user.email" className="bg-transparent" /></td>
           <td className="p-3 px-5">
             <select value="user.role" className="bg-transparent">
-              <option value="user">User</option>
+              <option value="user">User </option>
               <option value="admin">Agent</option>
             </select>
           </td>
