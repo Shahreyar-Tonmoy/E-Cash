@@ -30,7 +30,6 @@ const UserCashOut = () => {
       return res.json();
     },
   });
-
   if (isPending) {
     return <>loading....................</>;
   }
