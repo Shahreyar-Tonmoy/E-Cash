@@ -40,7 +40,6 @@ const UserCashOut = () => {
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
-
   const handleInputAmmount = (event) => {
     setAmmount(event.target.value);
   };
