@@ -20,7 +20,7 @@ const EBusinessCard = ({ image, title, details,link,linkName,disabled,header }) 
           <p className="text-lg">{details}</p>
           
           <div className={disabled}>
-          <p className="-pt-60 text-violet-900 text-2xl font-semibold"><Link to={link}><div className="flex items-center gap-2">
+          <p className="scroll-pt-60 text-violet-900 text-2xl font-semibold"><Link to={link}><div className="flex items-center gap-2">
           {linkName}<FaArrowRightLong className="text-violet-900 mt-1" /></div></Link></p>
           </div>
           
