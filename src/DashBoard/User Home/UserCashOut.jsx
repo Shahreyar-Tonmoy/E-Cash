@@ -84,9 +84,7 @@ const UserCashOut = () => {
               const myAmount = dataAma;
              
               const updatemyAmount = { myAmount };
-
-
-
+              
               axiosPublic
                 .put(`/myAmount/${From}`, updatemyAmount)
                 .then((res) => {
