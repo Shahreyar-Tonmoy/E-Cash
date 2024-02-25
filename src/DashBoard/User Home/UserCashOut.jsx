@@ -50,9 +50,7 @@ const UserCashOut = () => {
     const sum = parseInt(amounts);
     const from = data?._id;
     const From = data?.phoneNumber;
-
     const fromRole = data?.role;
-
     const TransactionType = isMember || (isAdmin === false && "Cash Out");
     const type = TransactionType;
 
