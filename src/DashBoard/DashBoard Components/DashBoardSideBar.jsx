@@ -19,12 +19,10 @@ const DashBoardSideBar = () => {
       })
       .catch((error) => console.log(error.massage));
   };
-
   return (
     <div>
       <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
         {/* dashboard condication apply here */}
-
         <div>
           {/* logo section */}
           <div className="-mx-6 px-6 py-4">
@@ -103,7 +101,6 @@ const DashBoardSideBar = () => {
             )}
 
             {/* Agent section */}
-
             {isMember && (
               <>
                 <li className="mt-3">
@@ -157,8 +154,6 @@ const DashBoardSideBar = () => {
                     </span>
                   </NavLink>
                 </li>
-
-
                 <li className="mt-3">
                   <NavLink
                     to="/dashboard/agent/transaction"
