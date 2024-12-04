@@ -12,7 +12,7 @@ const CurrencyCalculator = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://v6.exchangerate-api.com/v6/a6f10e58171c0558714a0f58/latest/USD"
+          `https://v6.exchangerate-api.com/v6/a6f10e58171c0558714a0f58/latest/${toCurrency}`
         );
         setExchangeRates(response.data.conversion_rates);
       } catch (error) {
@@ -21,12 +21,12 @@ const CurrencyCalculator = () => {
     };
 
     fetchData();
-  }, []);
+  }, [toCurrency]);
 
   useEffect(() => {
     if (exchangeRates) {
-      const rate = exchangeRates[toCurrency];
-      setConvertedAmount((amount * rate).toFixed(2));
+      const rate = exchangeRates[fromCurrency];
+      setConvertedAmount((amount / rate).toFixed(2));
     }
   }, [amount, fromCurrency, toCurrency, exchangeRates]);
 
@@ -48,11 +48,18 @@ const CurrencyCalculator = () => {
         <div className=" lg:flex flex-row-reverse mt-40  rounded-none ">
           <div className="card-body flex-1">
             <h2 className="text-3xl font-WorkSans font-semibold">
-            Currency Calculator
+              Currency Calculator
             </h2>
-            <h2 className="text-xl font-WorkSans font-semibold">Instantly Calculate Exchange Rates with Precision</h2>
+            <h2 className="text-xl font-WorkSans font-semibold">
+              Instantly Calculate Exchange Rates with Precision
+            </h2>
             <p className="text-lg">
-            Streamline your currency conversions effortlessly with our intuitive calculator. Access up-to-date exchange rates for diverse currencies, ensuring accuracy in every transaction. Whether for travel, business, or personal finance, our tool simplifies the process, making it easy to stay informed and make informed decisions.
+              Streamline your currency conversions effortlessly with our
+              intuitive calculator. Access up-to-date exchange rates for diverse
+              currencies, ensuring accuracy in every transaction. Whether for
+              travel, business, or personal finance, our tool simplifies the
+              process, making it easy to stay informed and make informed
+              decisions.
             </p>
           </div>
 
@@ -65,7 +72,7 @@ const CurrencyCalculator = () => {
                   </h3>
                 </div>
                 <div className="flex flex-col  gap-4 py-6 px-3 lg:py-6 lg:px-6 lg:p-6">
-                  {/* Amaount section */}
+                  {/* Amount section */}
 
                   <div className="relative h-11 w-full min-w-[200px]">
                     <input
@@ -122,7 +129,7 @@ const CurrencyCalculator = () => {
                     </label>
                   </div>
 
-                  {/* Current Amaount */}
+                  {/* Current Amount */}
 
                   <div className="relative h-10  min-w-[200px]">
                     <div className="peer h-full w-full rounded-[7px] border border-violet-900 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-violet-900 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-violet-900 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-violet-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">

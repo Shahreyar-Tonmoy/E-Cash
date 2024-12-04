@@ -7,6 +7,7 @@ import { AuthContext } from "../../Components/Login/Firebase/AuthProvider";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 
+
 const UserHome = () => {
   const { user } = useContext(AuthContext);
 const [count,setCount] = useState(0)
@@ -14,7 +15,7 @@ const [transactionDate,setTransactionDate] = useState(0)
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data", "user"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+      const res = await fetch(`https://e-cash-server-mongoose.vercel.app/users/${user?.email}`);
       return res.json();
     },
   });
@@ -77,6 +78,8 @@ axiosPublic.get("/api/user/count")
       </div>
       
     </div>
+
+
     
     
   </div>
